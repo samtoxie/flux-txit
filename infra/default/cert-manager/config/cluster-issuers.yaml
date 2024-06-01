@@ -31,7 +31,7 @@ spec:
           class: nginx
 ---
 apiVersion: cert-manager.io/v1
-kind: Issuer
+kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod-dns
   namespace: ingress
