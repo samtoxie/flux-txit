@@ -2,7 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: vaultwarden
-  namespace: vaultwarden
+  namespace: databases
   annotations:
     cnpg.io/skipEmptyWalArchiveCheck: enabled
 spec:
