@@ -22,7 +22,7 @@ spec:
         name: ingress-nginx
         namespace: ingress
       version: 4.10.1
-  dependsOn:
+  # dependsOn:
   # - name: cert-manager
   # namespace: ingress
   interval: 60m
