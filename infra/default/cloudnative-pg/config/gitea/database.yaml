@@ -17,16 +17,16 @@ spec:
   superuserSecret:
     name: pg-superuser
   bootstrap:
-    initdb:
-      database: gitea
-      owner: gitea
-      secret:
-        name: pg-gitea-user
-        # recovery:
-        #   source: gitea
-        # recovery:
-        #   backup:
-        #     name: daily-backup-gitea-20240516000000
+    # initdb:
+    #   database: gitea
+    #   owner: gitea
+    #   secret:
+    #     name: pg-gitea-user
+    recovery:
+      source: gitea
+    # recovery:
+    #   backup:
+    #     name: daily-backup-gitea-20240516000000
   resources:
     requests:
       cpu: 100m
