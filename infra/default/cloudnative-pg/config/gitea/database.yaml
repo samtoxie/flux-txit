@@ -24,9 +24,9 @@ spec:
     #     name: pg-gitea-user
     recovery:
       source: gitea
-    # recovery:
-    #   backup:
-    #     name: daily-backup-gitea-20240516000000
+      # recovery:
+      #   backup:
+      #     name: daily-backup-gitea-20240516000000
   resources:
     requests:
       cpu: 100m
@@ -38,7 +38,7 @@ spec:
       max_connections: "100"
       shared_buffers: 128MB
   monitoring:
-    enablePodMonitor: true
+    enablePodMonitor: false
   backup:
     retentionPolicy: 30d
     barmanObjectStore:

@@ -38,7 +38,7 @@ spec:
       max_connections: "100"
       shared_buffers: 128MB
   monitoring:
-    enablePodMonitor: true
+    enablePodMonitor: false
   backup:
     retentionPolicy: 30d
     barmanObjectStore:
