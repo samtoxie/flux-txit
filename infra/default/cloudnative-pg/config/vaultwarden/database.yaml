@@ -2,7 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: vaultwarden
-  namespace: databases
+  namespace: vaultwarden
   annotations:
     cnpg.io/skipEmptyWalArchiveCheck: enabled
 spec:
@@ -24,9 +24,9 @@ spec:
     #   name: pg-vaultwarden-user
     recovery:
       source: vaultwarden
-    # recovery:
-    #   backup:
-    #     name: daily-backup-vaultwarden-20240516000000
+      # recovery:
+      #   backup:
+      #     name: daily-backup-vaultwarden-20240516000000
   resources:
     requests:
       cpu: 100m
