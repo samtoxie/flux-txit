@@ -13,7 +13,7 @@ patches:
     name: ingress-nginx
 - patch: |
     - op: replace
-      path: /spec/values/controller/service/annotations/loadbalancer.openstack.org\/hostname
+      path: /spec/values/controller/service/annotations/loadbalancer.openstack.org~1hostname
       value: dagobah.txit.me
   target:
     kind: HelmRelease
