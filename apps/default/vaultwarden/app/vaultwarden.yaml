@@ -20,7 +20,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: vaultwarden/vaultwarden
+      chart: vaultwarden
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
