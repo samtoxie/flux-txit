@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../../default/cloudnative-pg/config
   - ../../../default/cloudnative-pg/config/gitea
-# - ../../../default/cloudnative-pg/config/vaultwarden
+  - ../../../default/cloudnative-pg/config/vaultwarden
 
 patches:
   - patch: |
