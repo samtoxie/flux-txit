@@ -17,13 +17,13 @@ spec:
   superuserSecret:
     name: pg-superuser
   bootstrap:
-    initdb:
-      database: vaultwarden
-      owner: vaultwarden
-      secret:
-        name: pg-vaultwarden-user
-    # recovery:
-    #   source: vaultwarden
+    # initdb:
+    #   database: vaultwarden
+    #   owner: vaultwarden
+    #   secret:
+    #     name: pg-vaultwarden-user
+    recovery:
+      source: vaultwarden
     # recovery:
     #   backup:
     #     name: daily-backup-vaultwarden-20240516000000

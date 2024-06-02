@@ -1,36 +1,36 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../../default/cloudnative-pg/config
-- ../../../default/cloudnative-pg/config/gitea
-- ../../../default/cloudnative-pg/config/vaultwarden
+  - ../../../default/cloudnative-pg/config
+  - ../../../default/cloudnative-pg/config/gitea
+# - ../../../default/cloudnative-pg/config/vaultwarden
 
 patches:
-- patch: |
-    - op: replace
-      path: /spec/backup/barmanObjectStore/destinationPath
-      value: s3://dagobah-backups/cnpg/
-  target:
-    kind: Cluster
-    name: gitea
-- patch: |
-    - op: replace
-      path: /spec/externalClusters/0/barmanObjectStore/destinationPath
-      value: s3://dagobah-backups/cnpg/
-  target:
-    kind: Cluster
-    name: gitea
-- patch: |
-    - op: replace
-      path: /spec/backup/barmanObjectStore/destinationPath
-      value: s3://dagobah-backups/cnpg/
-  target:
-    kind: Cluster
-    name: vaultwarden
-- patch: |
-    - op: replace
-      path: /spec/externalClusters/0/barmanObjectStore/destinationPath
-      value: s3://dagobah-backups/cnpg/
-  target:
-    kind: Cluster
-    name: vaultwarden
+  - patch: |
+      - op: replace
+        path: /spec/backup/barmanObjectStore/destinationPath
+        value: s3://dagobah-backups/cnpg/
+    target:
+      kind: Cluster
+      name: gitea
+  - patch: |
+      - op: replace
+        path: /spec/externalClusters/0/barmanObjectStore/destinationPath
+        value: s3://dagobah-backups/cnpg/
+    target:
+      kind: Cluster
+      name: gitea
+  - patch: |
+      - op: replace
+        path: /spec/backup/barmanObjectStore/destinationPath
+        value: s3://dagobah-backups/cnpg/
+    target:
+      kind: Cluster
+      name: vaultwarden
+  - patch: |
+      - op: replace
+        path: /spec/externalClusters/0/barmanObjectStore/destinationPath
+        value: s3://dagobah-backups/cnpg/
+    target:
+      kind: Cluster
+      name: vaultwarden
