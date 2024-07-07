@@ -20,17 +20,17 @@ patches:
     target:
       kind: Cluster
       name: gitea
-  - patch: |
-      - op: replace
-        path: /spec/backup/barmanObjectStore/destinationPath
-        value: s3://dagobah-backups/cnpg/
-    target:
-      kind: Cluster
-      name: vaultwarden
-  - patch: |
-      - op: replace
-        path: /spec/externalClusters/0/barmanObjectStore/destinationPath
-        value: s3://dagobah-backups/cnpg/
-    target:
-      kind: Cluster
-      name: vaultwarden
+  # - patch: |
+  #     - op: replace
+  #       path: /spec/backup/barmanObjectStore/destinationPath
+  #       value: s3://dagobah-backups/cnpg/
+  #   target:
+  #     kind: Cluster
+  #     name: vaultwarden
+  # - patch: |
+  #     - op: replace
+  #       path: /spec/externalClusters/0/barmanObjectStore/destinationPath
+  #       value: s3://dagobah-backups/cnpg/
+  #   target:
+  #     kind: Cluster
+  #     name: vaultwarden
