@@ -6,7 +6,7 @@ metadata:
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: vaultwarden
+  name: vaultwarden-application
   namespace: vaultwarden
 spec:
   interval: 60m
@@ -15,7 +15,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: vaultwarden
+  name: vaultwarden-application
   namespace: vaultwarden
 spec:
   chart:
@@ -24,7 +24,7 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: vaultwarden
+        name: vaultwarden-application
         namespace: vaultwarden
       version: 0.22.7
   interval: 60m
@@ -43,6 +43,6 @@ spec:
       value: $$argon2id$$v=19$$m=19456,t=2,p=1$$djFIRkRBVzJaOFg0cTFIVzZBZmc1NGJwQVJIUGo1aWQrSjZJV2VJZnhMMD0$$BDmSpH3LlBDnEA/BpaSGuOu7FQS2oQ0nmLXpKp+2b7E
     data:
       name: "vaultwarden-data"
-      size: "5Gi"
+      size: "10Gi"
       class: "default"
       keepPvc: true
