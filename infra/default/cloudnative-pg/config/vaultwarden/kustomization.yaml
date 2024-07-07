@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - networkpolicy.yaml
   - database.yaml
-# - backup.yaml
+  - backup.yaml
