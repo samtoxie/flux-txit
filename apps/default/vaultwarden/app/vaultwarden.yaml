@@ -32,8 +32,8 @@ spec:
     domain: "https://vault.dagobah.txit.me/"
     database:
       type: postgresql
-      existingSecret: "vaultwarden-app"
-      existingSecretKey: "uri"
+      existingSecret: vaultwarden-app
+      existingSecretKey: uri
     ingress:
       enabled: true
       class: "nginx"
