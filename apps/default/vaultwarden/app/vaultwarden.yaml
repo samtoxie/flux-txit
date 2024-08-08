@@ -35,10 +35,10 @@ spec:
       existingSecret: vaultwarden-app
       existingSecretKey: uri
     ingress:
-      enabled: true
-      class: "nginx"
-      tlsSecret: wildcard-dagobah-txit-me-tls
-      hostname: vault.dagobah.txit.me
+      enabled: false
+      # class: "nginx"
+      # tlsSecret: wildcard-dagobah-txit-me-tls
+      # hostname: vault.dagobah.txit.me
     adminToken:
       value: $$argon2id$$v=19$$m=19456,t=2,p=1$$djFIRkRBVzJaOFg0cTFIVzZBZmc1NGJwQVJIUGo1aWQrSjZJV2VJZnhMMD0$$BDmSpH3LlBDnEA/BpaSGuOu7FQS2oQ0nmLXpKp+2b7E
     data:

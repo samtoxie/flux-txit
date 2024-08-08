@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vaultwarden-ingress
+  namespace: vaultwarden
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - vault.dagobah.txit.me
+      secretName: wildcard-dagobah-txit-me-tls
+  rules:
+    - host: vault.dagobah.txit.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vaultwarden-application
+                port:
+                  number: 80
