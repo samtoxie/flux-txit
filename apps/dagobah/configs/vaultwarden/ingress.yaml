@@ -11,7 +11,7 @@ spec:
   tls:
     - hosts:
         - vault.dagobah.txit.me
-      secretName: vaultwarden-tls
+      secretName: vaultwarden-dns-tls
   rules:
     - host: vault.dagobah.txit.me
       http:
