@@ -17,9 +17,9 @@ spec:
   superuserSecret:
     name: pg-superuser
   bootstrap:
-    initdb: {}
-    # recovery:
-    # source: vaultwarden
+    # initdb: {}
+    recovery:
+      source: vaultwarden
     # recovery:
     #   backup:
     #     name: daily-backup-vaultwarden-20240516000000
