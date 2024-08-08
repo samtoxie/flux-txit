@@ -4,12 +4,14 @@ kind: Ingress
 metadata:
   name: vaultwarden-ingress
   namespace: vaultwarden
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - vault.dagobah.txit.me
-      secretName: wildcard-dagobah-txit-me-tls
+      secretName: vaultwarden-tls
   rules:
     - host: vault.dagobah.txit.me
       http:
