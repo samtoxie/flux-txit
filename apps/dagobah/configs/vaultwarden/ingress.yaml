@@ -5,7 +5,7 @@ metadata:
   name: vaultwarden-ingress
   namespace: vaultwarden
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-dns"
 spec:
   ingressClassName: nginx
   tls:
