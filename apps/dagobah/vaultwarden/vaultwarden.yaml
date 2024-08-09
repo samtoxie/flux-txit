@@ -34,7 +34,7 @@ spec:
               SMTP_HOST: smtppro.zoho.com
               SMTP_PORT: 587
               SMTP_SECURITY: starttls
-              SMTP_SENDER: info@toxopeus.it
+              SMTP_FROM: info@toxopeus.it
               SMTP_USERNAME: sam@toxopeus.it
               SMTP_PASSWORD:
                 secretKeyRef:
