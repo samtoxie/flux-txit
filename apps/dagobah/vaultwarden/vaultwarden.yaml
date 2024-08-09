@@ -24,7 +24,7 @@ spec:
               repository: ghcr.io/dani-garcia/vaultwarden
               tag: 1.31.0@sha256:4e28425bad4bd13568e1779f682ff7e441eca2ecd079bd77cfcba6e4eaf1b999
             env:
-              SIGNUPS_ALLOWED: false
+              SIGNUPS_ALLOWED: true
               WEBSOCKET_ENABLED: true
               DOMAIN: https://vault.dagobah.txit.me
               DATABASE_URL:
