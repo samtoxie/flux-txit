@@ -31,6 +31,15 @@ spec:
                 secretKeyRef:
                   name: vaultwarden-app
                   key: uri
+              SMTP_HOST: smtppro.zoho.com
+              SMTP_PORT: 587
+              SMTP_SECURITY: starttls
+              SMTP_SENDER: info@toxopeus.it
+              SMTP_USERNAME: sam@toxopeus.it
+              SMTP_PASSWORD:
+                secretKeyRef:
+                  name: smtp
+                  key: password
             probes:
               liveness:
                 enabled: true
