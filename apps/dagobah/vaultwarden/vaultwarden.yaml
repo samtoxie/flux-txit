@@ -59,6 +59,7 @@ spec:
         tls:
           - hosts:
               - vault.dagobah.txit.me
+            secretName: vaultwarden-dns-tls
     service:
       app:
         controller: vaultwarden
