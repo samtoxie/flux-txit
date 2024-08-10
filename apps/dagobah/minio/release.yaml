@@ -99,6 +99,8 @@ spec:
     ingress:
       app:
         className: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod-dns"
         hosts:
           - host: "minio.dagobah.txit.me"
             paths:
