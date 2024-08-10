@@ -1,0 +1,36 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cloudnative-pg-base
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./infra/dagobah/cloudnative-pg
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cloudnative-pg-conf
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: cloudnative-pg-base
+  path: ./infra/dagobah/cloudnative-pg/conf
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg

@@ -2,6 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: flux-system
 resources:
+  - certmanager.yaml
+  - ingress-nginx.yaml
+  - cloudnative-pg.yaml
   - bjw-s.yaml
   - juicefs.yaml
 patches:

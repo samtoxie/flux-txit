@@ -57,33 +57,14 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infra-dagobah-applications
+  name: infra-dagobah
   namespace: flux-system
 spec:
   interval: 5m
   dependsOn:
     - name: charts-dagobah
     - name: secrets-dagobah
-  path: ./infra/dagobah/applications
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: infra-dagobah-configs
-  namespace: flux-system
-spec:
-  interval: 5m
-  dependsOn:
-    - name: infra-dagobah-applications
-  path: ./infra/dagobah/configs
+  path: ./infra/dagobah
   prune: true
   sourceRef:
     kind: GitRepository
@@ -101,7 +82,7 @@ metadata:
 spec:
   interval: 5m
   dependsOn:
-    - name: infra-dagobah-configs
+    - name: infra-dagobah
   path: ./apps/dagobah
   prune: true
   sourceRef:
