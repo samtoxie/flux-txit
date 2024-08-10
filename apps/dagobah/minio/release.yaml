@@ -101,6 +101,7 @@ spec:
         className: nginx
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod-dns"
+          nginx.ingress.kubernetes.io/proxy-body-size: 2g
         hosts:
           - host: "minio.dagobah.txit.me"
             paths:
