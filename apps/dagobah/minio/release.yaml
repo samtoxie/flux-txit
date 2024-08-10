@@ -39,9 +39,14 @@ spec:
               # MINIO_PROMETHEUS_AUTH_TYPE: public
               MINIO_SERVER_URL: https://s3.dagobah.txit.me
               MINIO_UPDATE: "off"
-              MINIO_ROOT_USER: "{{ .MINIO_ROOT_USER }}"
-              MINIO_ROOT_PASSWORD: "{{ .MINIO_ROOT_PASSWORD }}"
-            args: ["server", "/data", "--console-address", ":9001"]
+              MINIO_ROOT_USER:
+                secretKeyRef:
+                  name: minio-root-user
+                  key: username
+              MINIO_ROOT_PASSWORD:
+                secretKeyRef:
+                  name: minio-root-user
+                  key: password
             # probes:
             #   liveness: &probes
             #     enabled: true
