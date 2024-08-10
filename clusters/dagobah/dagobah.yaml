@@ -5,7 +5,7 @@ metadata:
   name: configs-dagobah
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 5m
   path: ./clusters/dagobah/configs
   prune: true
   sourceRef:
@@ -22,7 +22,9 @@ metadata:
   name: charts-dagobah
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 5m
+  dependsOn:
+    - name: configs-dagobah
   path: ./clusters/dagobah/sources/helm
   prune: true
   sourceRef:
@@ -40,6 +42,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
+  dependsOn:
+    - name: configs-dagobah
   path: ./secrets/dagobah
   prune: true
   sourceRef:
@@ -56,9 +60,8 @@ metadata:
   name: infra-dagobah-applications
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 5m
   dependsOn:
-    - name: configs-dagobah
     - name: charts-dagobah
     - name: secrets-dagobah
   path: ./infra/dagobah/applications
@@ -77,7 +80,7 @@ metadata:
   name: infra-dagobah-configs
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 5m
   dependsOn:
     - name: infra-dagobah-applications
   path: ./infra/dagobah/configs
@@ -96,7 +99,7 @@ metadata:
   name: apps-dagobah
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 5m
   dependsOn:
     - name: infra-dagobah-configs
   path: ./apps/dagobah
