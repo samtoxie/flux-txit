@@ -99,13 +99,13 @@ spec:
       app:
         className: nginx
         hosts:
-          - host: "https://minio.dagobah.txit.me"
+          - host: "minio.dagobah.txit.me"
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
-          - host: "https://s3.dagobah.txit.me"
+          - host: "s3.dagobah.txit.me"
             paths:
               - path: /
                 service:
@@ -113,8 +113,8 @@ spec:
                   port: s3
         tls:
           - hosts:
-              - "https://minio.dagobah.txit.me"
-              - "https://s3.dagobah.txit.me"
+              - "minio.dagobah.txit.me"
+              - "s3.dagobah.txit.me"
             secretName: minio-http-tls
     persistence:
       data:
