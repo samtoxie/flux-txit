@@ -49,23 +49,23 @@ spec:
         maxParallel: 8
       s3Credentials:
         accessKeyId:
-          name: pg-s3-credentials
+          name: s3-fra
           key: access-key-id
         secretAccessKey:
-          name: pg-s3-credentials
+          name: s3-fra
           key: secret-access-key
   externalClusters:
-  - name: gitea
-    barmanObjectStore:
-      destinationPath: s3://cluster-backups/cnpg
-      endpointURL: https://fra.fuga.cloud:8080
-      wal:
-        compression: bzip2
-        maxParallel: 8
-      s3Credentials:
-        accessKeyId:
-          name: pg-s3-credentials
-          key: access-key-id
-        secretAccessKey:
-          name: pg-s3-credentials
-          key: secret-access-key
+    - name: gitea
+      barmanObjectStore:
+        destinationPath: s3://cluster-backups/cnpg
+        endpointURL: https://fra.fuga.cloud:8080
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        s3Credentials:
+          accessKeyId:
+            name: s3-fra
+            key: access-key-id
+          secretAccessKey:
+            name: s3-fra
+            key: secret-access-key

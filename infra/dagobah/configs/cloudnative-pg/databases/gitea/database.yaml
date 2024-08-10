@@ -42,10 +42,10 @@ spec:
         maxParallel: 8
       s3Credentials:
         accessKeyId:
-          name: pg-s3-credentials
+          name: s3-fra
           key: access-key-id
         secretAccessKey:
-          name: pg-s3-credentials
+          name: s3-fra
           key: secret-access-key
   externalClusters:
     - name: gitea
@@ -57,8 +57,8 @@ spec:
           maxParallel: 8
         s3Credentials:
           accessKeyId:
-            name: pg-s3-credentials
+            name: s3-fra
             key: access-key-id
           secretAccessKey:
-            name: pg-s3-credentials
+            name: s3-fra
             key: secret-access-key
