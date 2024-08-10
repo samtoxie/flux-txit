@@ -14,8 +14,9 @@ spec:
     size: 5Gi
     storageClass: default
   bootstrap:
-    initdb: {}
-      # source: gitea
+    # initdb: {}
+    recovery:
+      source: gitea
     # recovery:
     #   backup:
     #     name: daily-backup-vaultwarden-20240516000000
