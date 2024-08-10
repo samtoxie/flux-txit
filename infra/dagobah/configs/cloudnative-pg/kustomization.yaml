@@ -4,7 +4,7 @@ resources:
   - ../../../default/cloudnative-pg/config
   - databases/vaultwarden
   - databases/gitea
-
+  - databases/juicefs-ams
 # patches:
 #   - patch: |
 #       - op: replace
