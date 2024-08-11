@@ -4,3 +4,4 @@ resources:
   - databases/vaultwarden
   - databases/gitea
   - databases/juicefs
+  - databases/zitadel
