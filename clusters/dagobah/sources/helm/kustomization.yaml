@@ -7,6 +7,7 @@ resources:
   - cloudnative-pg.yaml
   - bjw-s.yaml
   - juicefs.yaml
+  - zitadel.yaml
 patches:
   - path: common.yaml
     target:
