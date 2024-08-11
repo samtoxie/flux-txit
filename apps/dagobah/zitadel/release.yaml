@@ -17,11 +17,11 @@ spec:
       interval: 2h
   dependsOn:
   - name: cert-manager
-    namespace: cert-manager
+    namespace: ingress
   - name: ingress-nginx
-    namespace: ingress-nginx
+    namespace: ingress
   - name: cloudnative-pg
-    namespace: cloudnative-pg
+    namespace: databases
   values:
     ingress:
       enabled: true
