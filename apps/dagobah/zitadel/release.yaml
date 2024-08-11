@@ -1,0 +1,108 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: zitadel
+  namespace: identity
+spec:
+  interval: 2h
+  chart:
+    spec:
+      chart: zitadel
+      sourceRef: 
+        kind: HelmRepository
+        name: zitadel
+        namespace: flux-system
+      version: 8.1.0
+      interval: 2h
+  dependsOn:
+  - name: cert-manager
+    namespace: cert-manager
+  - name: ingress-nginx
+    namespace: ingress-nginx
+  - name: cloudnative-pg
+    namespace: cloudnative-pg
+  values:
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
+      hosts:
+        - host: login.dagobah.txit.me
+          paths:
+            - path: /
+              pathType: Prefix
+      tls: 
+        - secretName: zitadel-tls
+          hosts:
+          - login.dagobah.txit.me
+    replicaCount: 1
+    zitadel:
+      masterkeySecretName: zitadel-secrets
+      configmapConfig:
+        ExternalSecure: true
+        ExternalPort: 443
+        ExternalDomain: login.dagobah.txit.me
+        TLS:
+          Enabled: false
+        Log:
+          Level: 'info'
+        Database:
+          Postgres:
+            MaxOpenConns: 20
+            MaxIdleConns: 10
+            MaxConnLifetime: 30m
+            MaxConnIdleTime: 5m
+            User:
+              SSL:
+                Mode: disable
+            Admin:
+              SSL:
+                Mode: disable
+        SystemDefaults:
+          Multifactors:
+            OTP:
+              Issuer: "Toxopeus IT"
+    env:
+    - name: ZITADEL_DATABASE_POSTGRES_DATABASE
+      valueFrom:
+        secretKeyRef:
+          name: zitadel-app
+          key: dbname
+    - name: ZITADEL_DATABASE_POSTGRES_HOST
+      valueFrom:
+        secretKeyRef:
+          name: zitadel-app
+          key: host
+    - name: ZITADEL_DATABASE_POSTGRES_PORT
+      valueFrom:
+        secretKeyRef:
+          name: zitadel-app
+          key: port
+    - name: ZITADEL_DATABASE_POSTGRES_USER_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: zitadel-app
+          key: username
+    - name: ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: zitadel-app
+          key: password
+    - name: ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: zitadel-superuser
+          key: username
+    - name: ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: zitadel-superuser
+          key: password
+    metrics:
+      enabled: false
+      serviceMonitor:
+        enabled: true
+        honorLabels: false
+        honorTimestamps: true
