@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: vaultwarden-app
+  name: whoami-app
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./apps/dagobah/vaultwarden
+  path: ./apps/venator/whoami
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,13 +19,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: vaultwarden-conf
+  name: whoami-conf
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
-  - name: vaultwarden-app
-  path: ./apps/dagobah/vaultwarden/conf
+  - name: whoami-app
+  path: ./apps/dagobah/venator/whoami
   prune: true
   sourceRef:
     kind: GitRepository
