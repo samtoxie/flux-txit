@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: juicefs
+  namespace: kube-system
+spec:
+  interval: 2h
+  chart:
+    spec:
+      chart: juicefs-csi-driver
+      sourceRef:
+        kind: HelmRepository
+        name: juicefs-charts
+        namespace: flux-system
+      interval: 2h
+  values:
+    node:
+      terminationGracePeriodSeconds: 60

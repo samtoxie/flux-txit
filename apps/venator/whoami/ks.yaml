@@ -1,0 +1,36 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: vaultwarden-app
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./apps/dagobah/vaultwarden
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: vaultwarden-conf
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: vaultwarden-app
+  path: ./apps/dagobah/vaultwarden/conf
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg

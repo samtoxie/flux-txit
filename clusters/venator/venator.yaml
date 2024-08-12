@@ -1,0 +1,94 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: configs-venator
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./clusters/venator/configs
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: charts-venator
+  namespace: flux-system
+spec:
+  interval: 5m
+  dependsOn:
+    - name: configs-venator
+  path: ./clusters/venator/sources/helm
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: secrets-venator
+  namespace: flux-system
+spec:
+  interval: 5m
+  dependsOn:
+    - name: configs-venator
+  path: ./secrets/venator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-venator
+  namespace: flux-system
+spec:
+  interval: 5m
+  dependsOn:
+    - name: charts-venator
+    - name: secrets-venator
+  path: ./infra/venator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-venator
+  namespace: flux-system
+spec:
+  interval: 5m
+  dependsOn:
+    - name: infra-venator
+  path: ./apps/venator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
