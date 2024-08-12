@@ -53,6 +53,7 @@ To be expanded...
 │       └── juicefs
 │           └── conf
 └── secrets
+    ├── _default
     ├── dagobah
     │   ├── cloudnative-pg
     │   ├── gitea
@@ -62,7 +63,6 @@ To be expanded...
     │   ├── shared
     │   ├── vaultwarden
     │   └── zitadel
-    ├── default
     └── venator
         ├── juicefs
         └── shared
