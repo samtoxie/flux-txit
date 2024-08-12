@@ -1,0 +1,36 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: renovate-app
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./apps/dagobah/renovate
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: renovate-conf
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: renovate-app
+  path: ./apps/dagobah/renovate/conf
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
