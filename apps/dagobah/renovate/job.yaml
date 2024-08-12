@@ -23,7 +23,7 @@ metadata:
   name: renovate-bot
   namespace: renovate
 spec:
-  schedule: '@hourly'
+  schedule: '0,20,40 * * * *'
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
