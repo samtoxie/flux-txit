@@ -31,5 +31,11 @@
       "(^|/)infra/.+\\.ya?ml(?:\\.j2)?$",
       "(^|/)clusters/.+\\.ya?ml(?:\\.j2)?$"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["renovate", "renovate/renovate"],
+      "automerge": true
+    }
+  ]
 }
