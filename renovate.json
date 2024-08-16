@@ -35,7 +35,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["renovate", "renovate/renovate"],
-      "automergeType": "branch",
+      "automerge": true,
       "ignoreTests": true
     }
   ]
