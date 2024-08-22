@@ -15,9 +15,9 @@ spec:
     storageClass: default
   enableSuperuserAccess: true
   bootstrap:
-    initdb: {}
-    # recovery:
-    #   source: juicefs
+    # initdb: {}
+    recovery:
+      source: juicefs
     # recovery:
     #   backup:
     #     name: daily-backup-vaultwarden-20240516000000
