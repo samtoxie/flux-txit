@@ -17,7 +17,7 @@ spec:
   bootstrap:
     # initdb: {}
     recovery:
-      source: juicefs
+      source: zitadel
     # recovery:
     #   backup:
     #     name: daily-backup-vaultwarden-20240516000000
