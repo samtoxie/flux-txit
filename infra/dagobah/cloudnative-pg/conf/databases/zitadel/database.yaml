@@ -12,7 +12,7 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 5Gi
-    storageClass: juicefs
+    storageClass: default
   enableSuperuserAccess: true
   bootstrap:
     # initdb: {}
