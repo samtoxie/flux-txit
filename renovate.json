@@ -37,6 +37,55 @@
       "matchPackageNames": ["renovate", "renovate/renovate"],
       "automerge": true,
       "ignoreTests": true
+    },
+    {
+      "description": ["Separate PRs for default"],
+      "matchFileNames": [
+        "**/default/**"
+      ],
+      "additionalBranchPrefix": "default-"
+    },
+    {
+      "description": ["Separate PRs for dagobah cluster"],
+      "matchFileNames": [
+        "**/dagobah/**"
+      ],
+      "additionalBranchPrefix": "dagobah-"
+    },
+    {
+      "description": ["Separate PRs for mandalore cluster"],
+      "matchFileNames": [
+        "**/mmandalore/**"
+      ],
+      "additionalBranchPrefix": "mandalore-"
+    },
+    {
+      "description": ["Separate PRs for venator cluster"],
+      "matchFileNames": [
+        "**/venator/**"
+      ],
+      "additionalBranchPrefix": "venator-"
+    },
+    {
+      "description": ["Separate PRs for dagobah DB configs"],
+      "matchFileNames": [
+        "**/dagobah/cloudnative-pg/config/*/**"
+      ],
+      "additionalBranchPrefix": "dagobah-{{parentDir}}-"
+    },
+    {
+      "description": ["Separate PRs for mandalore DB configs"],
+      "matchFileNames": [
+        "**/mandalore/cloudnative-pg/config/*/**"
+      ],
+      "additionalBranchPrefix": "mandalore-{{parentDir}}-"
+    },
+    {
+      "description": ["Separate PRs for venator DB configs"],
+      "matchFileNames": [
+        "**/venator/cloudnative-pg/config/*/**"
+      ],
+      "additionalBranchPrefix": "venator-{{parentDir}}-"
     }
   ]
 }
