@@ -30,7 +30,7 @@ spec:
       template:
         spec:
           containers:
-          - image: renovate/renovate:38.55.2
+          - image: renovate/renovate:38.55.3
             name: renovate-bot
             env:
             - name: RENOVATE_BASE_DIR
