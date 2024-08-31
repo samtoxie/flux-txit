@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: daily-backup-juicefs
+  name: daily-backup-juicefs-ams
   namespace: juicefs
 spec:
   schedule: "@daily"

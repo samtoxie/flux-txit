@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: daily-backup-zitadel
+  name: daily-backup-zitadel-ams
   namespace: identity
 spec:
   schedule: "@daily"

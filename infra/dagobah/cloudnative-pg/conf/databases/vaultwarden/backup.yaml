@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: daily-backup-vaultwarden
+  name: daily-backup-vaultwarden-ams
   namespace: vaultwarden
 spec:
   schedule: "@daily"

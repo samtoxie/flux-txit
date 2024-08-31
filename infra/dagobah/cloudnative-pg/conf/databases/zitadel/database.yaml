@@ -37,16 +37,16 @@ spec:
     retentionPolicy: 14d
     barmanObjectStore:
       destinationPath: s3://dagobah-backups/cnpg
-      endpointURL: https://fra.fuga.cloud:8080
+      endpointURL: https://core.fuga.cloud:8080
       wal:
         compression: bzip2
         maxParallel: 8
       s3Credentials:
         accessKeyId:
-          name: s3-fra
+          name: s3-ams
           key: access-key-id
         secretAccessKey:
-          name: s3-fra
+          name: s3-ams
           key: secret-access-key
   externalClusters:
     - name: zitadel
