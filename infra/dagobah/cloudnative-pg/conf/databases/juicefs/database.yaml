@@ -18,6 +18,8 @@ spec:
     # initdb: {}
     recovery:
       source: juicefs
+      recoveryTarget:
+        targetTime: "2024-08-31 09:20:00.00000+02"
     # recovery:
     #   backup:
     #     name: daily-backup-vaultwarden-20240516000000
