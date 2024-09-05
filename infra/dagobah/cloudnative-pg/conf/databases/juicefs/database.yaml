@@ -18,7 +18,11 @@ spec:
     # initdb: {}
     recovery:
       source: juicefs
-      # recoveryTarget:
+      database: app
+      owner: app
+      secret:
+        name: jfs-db
+        # recoveryTarget:
         # targetTime: "2024-08-31 09:20:00.00000+02"
     # recovery:
     #   backup:
@@ -51,17 +55,17 @@ spec:
           name: s3-ams
           key: secret-access-key
   externalClusters:
-    - name: juicefs
-      barmanObjectStore:
-        destinationPath: s3://dagobah-backups/cnpg
-        endpointURL: https://core.fuga.cloud:8080
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        s3Credentials:
-          accessKeyId:
-            name: s3-ams
-            key: access-key-id
-          secretAccessKey:
-            name: s3-ams
-            key: secret-access-key
+  - name: juicefs
+    barmanObjectStore:
+      destinationPath: s3://dagobah-backups/cnpg
+      endpointURL: https://core.fuga.cloud:8080
+      wal:
+        compression: bzip2
+        maxParallel: 8
+      s3Credentials:
+        accessKeyId:
+          name: s3-ams
+          key: access-key-id
+        secretAccessKey:
+          name: s3-ams
+          key: secret-access-key
