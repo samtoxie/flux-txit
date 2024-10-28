@@ -6,7 +6,7 @@ metadata:
 data:
   config.json: |-
     {
-      "repositories": ["samtoxie/flux-txit","samtoxie/tatooine-applications"],
+      "repositories": ["samtoxie/flux-txit","samtoxie/docker-applications"],
       "platform": "github",
       "autodiscover": false,
       "flux": {
