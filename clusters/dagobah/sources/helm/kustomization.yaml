@@ -8,6 +8,7 @@ resources:
   - bjw-s.yaml
   - juicefs.yaml
   - zitadel.yaml
+  - traefik.yaml
 patches:
   - path: common.yaml
     target:
