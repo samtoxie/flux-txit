@@ -1,0 +1,72 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-netbird
+  namespace: netbird
+  annotations:
+    cnpg.io/skipEmptyWalArchiveCheck: enabled
+spec:
+  description: Postgresql cluster for Netbird
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.2
+  instances: 2
+  minSyncReplicas: 1
+  maxSyncReplicas: 1
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 10Gi
+    storageClass: default
+  enableSuperuserAccess: false
+  superuserSecret:
+    name: pg-superuser
+  bootstrap:
+    initdb:
+      database: netbird
+      owner: netbird
+      secret:
+        name: pg-netbird
+    # recovery:
+    #   source: netbird
+    #   database: netbird
+    #   owner: netbird
+    #   secret:
+    #     name: pg-netbird
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+  postgresql:
+    parameters:
+      max_connections: "100"
+      shared_buffers: 128MB
+  monitoring:
+    enablePodMonitor: true
+  backup:
+    retentionPolicy: 30d
+    barmanObjectStore:
+      destinationPath: s3://dagobah-backups/cnpg
+      endpointURL: https://fra.fuga.cloud:8080
+      wal:
+        compression: bzip2
+        maxParallel: 8
+      s3Credentials:
+        accessKeyId:
+          name: s3-fra
+          key: access-key-id
+        secretAccessKey:
+          name: s3-fra
+          key: secret-access-key
+  externalClusters:
+  - name: netbird
+    barmanObjectStore:
+      destinationPath: s3://dagobah-backups/cnpg
+      endpointURL: https://fra.fuga.cloud:8080
+      wal:
+        compression: bzip2
+        maxParallel: 8
+      s3Credentials:
+        accessKeyId:
+          name: s3-fra
+          key: access-key-id
+        secretAccessKey:
+          name: s3-fra
+          key: secret-access-key

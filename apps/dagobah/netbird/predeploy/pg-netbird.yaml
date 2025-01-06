@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/basic-auth
+metadata:
+    name: pg-netbird
+    namespace: netbird
+stringData:
+    username: ENC[AES256_GCM,data:32EHXE66Ew==,iv:QWWdcOXKFXK4tiH+vJZYp7SpqkkfcpMHExpbkDzwHRQ=,tag:zG+LJ5fyHMp/OZLkEiQnYw==,type:str]
+    password: ENC[AES256_GCM,data:9oraJQtRcRwqMbTy7T+OURkRM/5Jm2mopT+t4g+Ay2HxygzYHPqueTh9sOHNIIvMj6/C,iv:JnYcVjpPg64iAsw/vIADjvf5I9taYiNR3hJi7rRDYy4=,tag:D+hbq8eeC344HJ+jFzYXtQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2025-01-06T21:18:54Z"
+    mac: ENC[AES256_GCM,data:21bh/1aENXR+1ZGT/ou/kay/w6/mjP/gaYY+9C4/4OV5oB0cyYueT9kG1BD2mbWgmq0tOFse83tZF8iYt4R6pP/APTM4ngct9B6nJPSde7gqVwVbqj1k6v/zMZymdrc7XxPBCCjCmA4wuGVPEK3mN+hMvpwI6WmtI6P4FZUj8gA=,iv:noGNHEI8DVS9l3KqHgaY8GSFSQMtEc7ZOsqEvjGaoCo=,tag:Y8+Q+nvYq5Qkh06DIvLFQg==,type:str]
+    pgp:
+        - created_at: "2025-01-06T21:18:54Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA/ejCwjtN08KARAAyOAnPA4gR9aQHwuimddBJwj/2CyXSH2Qj3m5vcydnX2P
+            FKCXcOohRXNcHtOoEJF/wrpMD1CwrTqjBmUkO276bIF9ObSWfDm4ulUEKjfquncP
+            gIGzCdbm3q5xm8R0/FXCz88i73MSuAmnZ9DxMHChrAHUxobD5CPZbHYiENXUz+Cy
+            wbR3DIL8hYvPfvk3lhIc0FLAuPNc/LzcQT8Pb6CQ2e82XHe5g1ALzg1hns/DYOxW
+            EOz5R4yDebAzf8Tf2Mt/ReFF2zfpwS1osbWKrAz+7ysSNVJ6zoUpASmfpSEzQia6
+            BcEaMehk9YgyarLPMDZl4Q2kghcrb13kYOJ38Lh/j5T8OICs8BsgaOM0bGPM/kRM
+            5uleSl/2J6cRTRJr3c3SZb9T+4H0upPb6eI9WJRJCam10HQCa1EENPWAI0Vqq/2f
+            WYBt1iO3pW8Fgq70Y80trSaZ7XHh/FOL62bYkwh4IbN7rVfAUHDE7JIgeaGpFpoW
+            IW2SuBQp98l9eC5xyFKPGpgQiq5q4t2A07WeiEgxjnjtzO9lLZRXFX8jPRDxb6ZQ
+            wGWMwAWNbqXOZzMXvrwTMA2ir9nJmv9YTasgkdD8x6H6gmcSNyNQCIYjyKWx1vmD
+            aXB+YgMMQyq/dBzyB3TwfJAZvX2thQ6NJ+ZX0OEFl7hDBv/yX9hTnqPcwj7YX8TU
+            aAEJAhDV4nJm1NYDvAdF1X40Xk+hLtidW1/6c/ZVSwTQO2UKR/kffnGRGD+z5Q5f
+            eMiGGZm34oT36Aa1LXc95we7pW0+zC7FRxl+raShdG8XPIU465rQa2eF57qSLHWk
+            EjA2E7MRa2bh
+            =FJgx
+            -----END PGP MESSAGE-----
+          fp: 03FC3E1D8797BBD9C275804D0CEF33994271303E
+    encrypted_regex: ^(data|stringData)$
+    version: 3.9.1

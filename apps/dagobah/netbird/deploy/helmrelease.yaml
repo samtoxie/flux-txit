@@ -1,0 +1,192 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: netbird
+  namespace: netbird
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 15m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+    controllers:
+      management:
+        containers:
+          management:
+            image:
+              repository: netbirdio/management
+              tag: 0.35.2
+            envFrom:
+            - secretRef:
+                name: netbird-env
+            args:
+            - --port=80
+            - --log-file=console
+            - --log-level=info
+            - --disable-anonymous-metrics=true
+            - --single-account-mode-domain=vpn.dagobah.txit.me
+            - --dns-domain=vpn.txit
+            - --idp-sign-key-refresh-enabled
+      signal:
+        containers:
+          signal:
+            image:
+              repository: netbirdio/signal
+              tag: 0.35.2
+              pullPolicy: Always
+            envFrom:
+            - secretRef:
+                name: netbird-env
+      relay:
+        containers:
+          relay:
+            image:
+              repository: netbirdio/relay
+              tag: 0.35.2
+              pullPolicy: Always
+            env:
+              NB_LOG_LEVEL: info
+              NB_LISTEN_ADDRESS: ":80"
+              NB_EXPOSED_ADDRESS: "rels://vpn.dagobah.txit.me:443"
+            envFrom:
+            - secretRef:
+                name: netbird-env
+      dashboard:
+        containers:
+          dashboard:
+            image:
+              repository: netbirdio/dashboard
+              tag: v2.8.2
+              pullPolicy: Always
+            env:
+              NETBIRD_MGMT_API_ENDPOINT: "https://vpn.dagobah.txit.me"
+              NETBIRD_MGMT_GRPC_API_ENDPOINT: "https://vpn.dagobah.txit.me"
+              AUTH_AUDIENCE: "301489946458390891"
+              AUTH_CLIENT_ID: "301489946458390891"
+              AUTH_AUTHORITY: "https://login.dagobah.txit.me"
+              USE_AUTH0: "false"
+              AUTH_SUPPORTED_SCOPES: "openid profile email offline_access"
+              AUTH_REDIRECT_URI: "/nb-auth"
+              AUTH_SILENT_REDIRECT_URI: "/nb-silent-auth"
+              NGINX_SSL_PORT: "443"
+              LETSENCRYPT_DOMAIN: "none"
+            envFrom:
+            - secretRef:
+                name: netbird-env
+    service:
+      dashboard:
+        controller: dashboard
+        type: ClusterIP
+        ports:
+          http:
+            port: 80
+      management:
+        controller: management
+        type: ClusterIP
+        ports:
+          http:
+            port: 80
+      signal:
+        controller: signal
+        type: ClusterIP
+        ports:
+          grpc:
+            port: 10000
+      relay:
+        controller: relay
+        type: ClusterIP
+        ports:
+          http:
+            port: 80
+    ingress:
+      http:
+        enabled: true
+        className: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
+        hosts:
+        - host: vpn.dagobah.txit.me
+          paths:
+          - path: /
+            pathType: ImplementationSpecific
+            service:
+              identifier: dashboard
+              port: 80
+          - path: /api
+            pathType: ImplementationSpecific
+            service:
+              identifier: management
+              port: 80
+          - path: /relay
+            pathType: ImplementationSpecific
+            service:
+              identifier: relay
+              port: 80
+        tls:
+        - hosts:
+          - vpn.dagobah.txit.me
+          secretName: nb-tls
+      grpc:
+        enabled: true
+        className: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+        hosts:
+        - host: vpn.dagobah.txit.me
+          paths:
+          - path: /management.ManagementService
+            pathType: ImplementationSpecific
+            service:
+              identifier: management
+              port: 80
+          - path: /signalexchange.SignalExchange
+            pathType: ImplementationSpecific
+            service:
+              identifier: signal
+              port: 10000
+        tls:
+        - hosts:
+          - vpn.dagobah.txit.me
+          secretName: nb-tls
+    persistence:
+      netbird-mgmt:
+        enabled: true
+        existingClaim: netbird-config-v1
+        advancedMounts:
+          management:
+            management:
+            - path: /var/lib/netbird
+      mngmt-json:
+        type: configMap
+        name: configmap-netbird
+        advancedMounts:
+          management:
+            management:
+            - path: /etc/netbird/management.json
+              readOnly: false
+              subPath: configmap-netbird

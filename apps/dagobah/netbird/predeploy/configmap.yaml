@@ -1,0 +1,116 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-netbird
+  namespace: netbird
+data:
+  configmap-netbird: |
+    {
+      "Stuns": [
+          {
+              "Proto": "udp",
+              "URI": "{{ .STUN_SERVER }}",
+              "Username": "",
+              "Password": ""
+          }
+      ],
+      "TURNConfig": {
+          "TimeBasedCredentials": false,
+          "CredentialsTTL": "12h0m0s",
+          "Secret": "secret",
+          "Turns": [
+              {
+                  "Proto": "udp",
+                  "URI": "{{ .TURN_SERVER }}",
+                  "Username": "{{ .TURN_SERVER_USER }}",
+                  "Password": "{{ .TURN_SERVER_PASSWORD }}"
+              }
+          ]
+      },
+      "Relay": {
+          "Addresses": [
+              "rels://vpn.dagobah.txit.me:443"
+          ],
+          "CredentialsTTL": "24h0m0s",
+          "Secret": "{{ .NB_AUTH_SECRET }}"
+      },
+      "Signal": {
+          "Proto": "https",
+          "URI": "vpn.dagobah.txit.me:443",
+          "Username": "",
+          "Password": ""
+      },
+      "Datadir": "/var/lib/netbird/",
+      "DataStoreEncryptionKey": "{{ .DATASTORE_ENCRYPTION_KEY }}",
+      "HttpConfig": {
+          "LetsEncryptDomain": "",
+          "CertFile": "",
+          "CertKey": "",
+          "AuthAudience": "298976041618179364",
+          "AuthIssuer": "https://login.dagobah.txit.me",
+          "AuthUserIDClaim": "",
+          "AuthKeysLocation": "https://login.dagobah.txit.me/oauth/v2/keys",
+          "OIDCConfigEndpoint": "https://login.dagobah.txit.me/.well-known/openid-configuration",
+          "IdpSignKeyRefreshEnabled": true,
+          "ExtraAuthAudience": ""
+      },
+      "IdpManagerConfig": {
+          "ManagerType": "zitadel",
+          "ClientConfig": {
+              "Issuer": "https://login.dagobah.txit.me",
+              "TokenEndpoint": "https://login.dagobah.txit.me/oauth/v2/token",
+              "ClientID": "netbird-service-user",
+              "ClientSecret": "{{ .IDP_SERVICE_USER_SECRET }}",
+              "GrantType": "client_credentials"
+          },
+          "ExtraConfig": {
+              "ManagementEndpoint": "https://login.dagobah.txit.me/management/v1"
+          },
+          "Auth0ClientCredentials": null,
+          "AzureClientCredentials": null,
+          "KeycloakClientCredentials": null,
+          "ZitadelClientCredentials": null
+      },
+      "DeviceAuthorizationFlow": {
+          "Provider": "hosted",
+          "ProviderConfig": {
+              "ClientID": "301490282371809643",
+              "ClientSecret": "",
+              "Domain": "login.dagobah.txit.me",
+              "Audience": "301490282371809643",
+              "TokenEndpoint": "https://login.dagobah.txit.me/oauth/v2/token",
+              "DeviceAuthEndpoint": "https://login.dagobah.txit.me/oauth/v2/device_authorization",
+              "AuthorizationEndpoint": "",
+              "Scope": "openid",
+              "UseIDToken": false,
+              "RedirectURLs": null
+          }
+      },
+      "PKCEAuthorizationFlow": {
+          "ProviderConfig": {
+              "ClientID": "301490282371809643",
+              "ClientSecret": "",
+              "Domain": "",
+              "Audience": "301490282371809643",
+              "TokenEndpoint": "https://login.dagobah.txit.me/oauth/v2/token",
+              "DeviceAuthEndpoint": "",
+              "AuthorizationEndpoint": "https://login.dagobah.txit.me/oauth/v2/authorize",
+              "Scope": "openid profile email offline_access",
+              "UseIDToken": false,
+              "RedirectURLs": [
+                "http://localhost:53000/",
+                "http://localhost:54000/"
+              ]
+          }
+      },
+      "StoreConfig": {
+          "Engine": "postgres"
+      },
+      "ReverseProxy": {
+          "TrustedHTTPProxies": [],
+          "TrustedHTTPProxiesCount": 0,
+          "TrustedPeers": [
+              "0.0.0.0/0"
+          ]
+      }
+    }
