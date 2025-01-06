@@ -19,17 +19,17 @@ spec:
   superuserSecret:
     name: pg-superuser
   bootstrap:
-    initdb:
-      database: netbird
-      owner: netbird
-      secret:
-        name: pg-netbird
-    # recovery:
-    #   source: netbird
+    # initdb:
     #   database: netbird
     #   owner: netbird
     #   secret:
     #     name: pg-netbird
+    recovery:
+      source: pg-netbird
+      database: netbird
+      owner: netbird
+      secret:
+        name: pg-netbird
   resources:
     requests:
       cpu: 100m
@@ -56,7 +56,7 @@ spec:
           name: s3-fra
           key: secret-access-key
   externalClusters:
-  - name: netbird
+  - name: pg-netbird
     barmanObjectStore:
       destinationPath: s3://dagobah-backups/cnpg
       endpointURL: https://fra.fuga.cloud:8080
