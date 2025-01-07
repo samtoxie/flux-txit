@@ -155,7 +155,7 @@ spec:
         - hosts:
           - vpn.dagobah.txit.me
           secretName: nb-tls
-      grpc:
+      grpc-mgr:
         enabled: true
         className: nginx
         annotations:
@@ -178,6 +178,24 @@ spec:
             service:
               identifier: management-grpc
               port: 80
+      grpc-signal:
+        enabled: true
+        className: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "86400"
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "86400"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "86400"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            grpc_socket_keepalive on;
+            grpc_connect_timeout 86400s;
+            grpc_read_timeout 86400s;
+            grpc_send_timeout 86400s;
+        hosts:
+        - host: vpn.dagobah.txit.me
+          paths:
           - path: /signalexchange.SignalExchange
             pathType: ImplementationSpecific
             service:
