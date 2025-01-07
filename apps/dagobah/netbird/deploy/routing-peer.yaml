@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: netbird
-          image:mirror.gcr.io/netbirdio/netbird:latest
+          image: "mirror.gcr.io/netbirdio/netbird"
+          tag: 0.35.2
           env:
             - name: NB_SETUP_KEY
               valueFrom:
