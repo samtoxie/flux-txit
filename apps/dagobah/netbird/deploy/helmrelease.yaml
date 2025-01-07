@@ -165,6 +165,8 @@ spec:
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "86400"
           nginx.ingress.kubernetes.io/proxy-send-timeout: "86400"
           nginx.ingress.kubernetes.io/proxy-read-timeout: "86400"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            grpc_socket_keepalive on;
         hosts:
         - host: vpn.dagobah.txit.me
           paths:
