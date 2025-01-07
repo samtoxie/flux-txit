@@ -34,7 +34,7 @@ spec:
   - websecure
   routes:
   - kind: Rule
-    match: Host(`vpn.txit.me`)
+    match: Host(`vpn.txit.me`) && !PathPrefix(`/api`) && !PathPrefix(`/management`) && !PathPrefix(`/signalexchange`) && !PathPrefix(`/relay`)
     services:
     - name: netbird-dashboard
       namespace: netbird
