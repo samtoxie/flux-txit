@@ -47,7 +47,7 @@ spec:
             - --log-file=console
             - --log-level=info
             - --disable-anonymous-metrics=true
-            - --single-account-mode-domain=vpn.txit.me
+            - --single-account-mode-domain=vpn.dagobah.txit.me
             - --dns-domain=vpn.txit
             - --idp-sign-key-refresh-enabled
       signal:
@@ -70,7 +70,7 @@ spec:
             env:
               NB_LOG_LEVEL: info
               NB_LISTEN_ADDRESS: ":80"
-              NB_EXPOSED_ADDRESS: "rels://vpn.txit.me:443"
+              NB_EXPOSED_ADDRESS: "rels://vpn.dagobah.txit.me:443"
             envFrom:
             - secretRef:
                 name: netbird-env
@@ -82,8 +82,8 @@ spec:
               tag: v2.8.2
               pullPolicy: Always
             env:
-              NETBIRD_MGMT_API_ENDPOINT: "https://vpn.txit.me"
-              NETBIRD_MGMT_GRPC_API_ENDPOINT: "https://vpn.txit.me"
+              NETBIRD_MGMT_API_ENDPOINT: "https://vpn.dagobah.txit.me"
+              NETBIRD_MGMT_GRPC_API_ENDPOINT: "https://vpn.dagobah.txit.me"
               AUTH_AUDIENCE: "301489946458390891"
               AUTH_CLIENT_ID: "301489946458390891"
               AUTH_AUTHORITY: "https://login.dagobah.txit.me"
@@ -110,16 +110,12 @@ spec:
           http:
             port: 80
       management-grpc:
-        annotations:
-          traefik.ingress.kubernetes.io/service.serversscheme: h2c
         controller: management
         type: ClusterIP
         ports:
           grpc:
             port: 80
       signal:
-        annotations:
-          traefik.ingress.kubernetes.io/service.serversscheme: h2c
         controller: signal
         type: ClusterIP
         ports:
@@ -133,56 +129,60 @@ spec:
             port: 80
     ingress:
       http:
-        enabled: false
-        className: traefik
+        enabled: true
+        className: nginx
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
-          acme.cert-manager.io/http01-ingress-class: "traefik"
         hosts:
-        - host: vpn.txit.me
+        - host: vpn.dagobah.txit.me
           paths:
           - path: /
-            pathType: Prefix
+            pathType: ImplementationSpecific
             service:
               identifier: dashboard
               port: 80
           - path: /api
-            pathType: Prefix
+            pathType: ImplementationSpecific
             service:
               identifier: management
               port: 80
           - path: /relay
-            pathType: Prefix
+            pathType: ImplementationSpecific
             service:
               identifier: relay
               port: 80
         tls:
         - hosts:
-          - vpn.txit.me
-          secretName: nb-traefik-tls
+          - vpn.dagobah.txit.me
+          secretName: nb-tls
       grpc:
-        enabled: false
-        className: traefik
+        enabled: true
+        className: nginx
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
-          acme.cert-manager.io/http01-ingress-class: "traefik"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            grpc_read_timeout 1d;
+            grpc_send_timeout 1d;
+            grpc_socket_keepalive on;
         hosts:
-        - host: vpn.txit.me
+        - host: vpn.dagobah.txit.me
           paths:
           - path: /management.ManagementService
-            pathType: Prefix
+            pathType: ImplementationSpecific
             service:
               identifier: management-grpc
               port: 80
           - path: /signalexchange.SignalExchange
-            pathType: Prefix
+            pathType: ImplementationSpecific
             service:
               identifier: signal
               port: 10000
         tls:
         - hosts:
-          - vpn.txit.me
-          secretName: nb-traefik-tls
+          - vpn.dagobah.txit.me
+          secretName: nb-tls
     persistence:
       netbird-mgmt:
         enabled: true

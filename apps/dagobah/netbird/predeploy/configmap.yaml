@@ -29,14 +29,14 @@ data:
           },
           "Relay": {
               "Addresses": [
-                  "rels://vpn.txit.me:443"
+                  "rels://vpn.dagobah.txit.me:443"
               ],
               "CredentialsTTL": "24h0m0s",
               "Secret": "{{ .NB_AUTH_SECRET }}"
           },
           "Signal": {
               "Proto": "https",
-              "URI": "vpn.txit.me:443",
+              "URI": "vpn.dagobah.txit.me:443",
               "Username": "",
               "Password": ""
           },
