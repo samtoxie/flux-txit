@@ -12,10 +12,10 @@ spec:
         kind: HelmRepository
         name: ingress-nginx
         namespace: flux-system
-      version: 4.12.0
+      version: 4.11.3
   dependsOn:
-    - name: cert-manager
-      namespace: ingress
+  - name: cert-manager
+    namespace: ingress
   interval: 60m
   values:
     controller:
