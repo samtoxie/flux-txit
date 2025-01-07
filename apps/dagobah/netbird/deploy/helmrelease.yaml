@@ -133,7 +133,7 @@ spec:
             port: 80
     ingress:
       http:
-        enabled: false
+        enabled: true
         className: traefik
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
@@ -160,7 +160,7 @@ spec:
           - vpn.txit.me
           secretName: nb-traefik-tls
       grpc:
-        enabled: false
+        enabled: true
         className: traefik
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
