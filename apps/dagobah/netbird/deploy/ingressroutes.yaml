@@ -1,0 +1,78 @@
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: netbird-dns
+#   namespace: netbird
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+#     external-dns/is-public: "true"
+#     external-dns.alpha.kubernetes.io/hostname: "vpn.txit.me"
+# spec:
+#   rules:
+#   - host: vpn.txit.me
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: ssl-header
+  namespace: netbird
+spec:
+  headers:
+    customRequestHeaders:
+      Connection: keep-alive, Upgrade
+      Upgrade: WebSocket
+      X-Forwarded-Proto: "https"
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: netbird-ingress-secure
+  namespace: netbird
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`vpn.txit.me`)
+    services:
+    - name: netbird-dashboard
+      namespace: netbird
+      passHostHeader: true
+      port: 80
+      scheme: http
+  - kind: Rule
+    match: Host(`vpn.txit.me`) && PathPrefix(`/api`)
+    services:
+    - name: netbird-management
+      namespace: netbird
+      passHostHeader: true
+      port: 80
+      scheme: http
+  - kind: Rule
+    match: Host(`vpn.txit.me`) && PathPrefix(`/relay`)
+    services:
+    - name: netbird-relay
+      namespace: netbird
+      passHostHeader: true
+      port: 80
+    middlewares:
+    - name: ssl-header
+  - kind: Rule
+    match: Host(`vpn.txit.me`) && PathPrefix(`/management.ManagementService/`)
+    services:
+    - name: netbird-management
+      namespace: netbird
+      passHostHeader: true
+      port: 80
+      scheme: h2c
+  - kind: Rule
+    match: Host(`vpn.txit.me`) && PathPrefix(`/signalexchange.SignalExchange/`)
+    services:
+    - name: netbird-signal
+      namespace: netbird
+      passHostHeader: true
+      port: 10000
+      scheme: h2c
+  tls:
+    secretName: nb-traefik-tls
