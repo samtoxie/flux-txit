@@ -137,6 +137,7 @@ spec:
         className: traefik
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
+          acme.cert-manager.io/http01-ingress-class: "traefik"
         hosts:
         - host: vpn.txit.me
           paths:
@@ -164,6 +165,7 @@ spec:
         className: traefik
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
+          acme.cert-manager.io/http01-ingress-class: "traefik"
         hosts:
         - host: vpn.txit.me
           paths:
