@@ -4,8 +4,8 @@ metadata:
     name: netbird-env
     namespace: netbird
 stringData:
-    STUN_SERVER: ENC[AES256_GCM,data:ClmszhoXGH7zO7ucaO+0T+HApHjOmFBp,iv:SPo6si4KH2eaquxyfa6UvwVnzFkLw69UcrbeNjedPAw=,tag:gDJILB8x6VUGPpK0hrDCpQ==,type:str]
-    TURN_SERVER: ENC[AES256_GCM,data:pKtCGFS/zEwSZ3PdisgzUELZLDJevCtc,iv:+8SFVd7KIZEJOVK9hDuo1aPh/Y6VICpNZjLRKrGPXBA=,tag:lUEPqhmL25zZiLwueJCP1A==,type:str]
+    STUN_SERVER: ENC[AES256_GCM,data:veWgnBRQTRkKl8z0xbSHQe458UDeCN3l,iv:uUH3wftQQ+LULSs8wLN5igZqsSNr5g+1zcPyHZO/Nro=,tag:1+aHVLx96oZYRDCIVlnaQA==,type:str]
+    TURN_SERVER: ENC[AES256_GCM,data:iqnOQ/T2aX3Yv1B/dVGkSHawPw0/zE7C,iv:pjwUKn+bd5io3XVZGEefFanVW5kllQuoE0O9knGa7DA=,tag:CkTUKvmetT39+fXgQmNpzg==,type:str]
     TURN_SERVER_USER: ENC[AES256_GCM,data:wNICt//MqM+BjkxJadN3aw9IbrC/VarKvX1fUHXX44E=,iv:qKa8zxMKV3kKitiC87t5Bu34khnbmb7Q0hbe7nWD+WU=,tag:OCCxreq11tpTLjMRcewb5g==,type:str]
     TURN_SERVER_PASSWORD: ENC[AES256_GCM,data:D3hz50U7LzTcVKE5lMf5bcl1wN42+IaJLqzvOTvjwQE=,iv:cSjK942pU6hTb0FHjp1JZaxYUCPL2LARrj8pMsru62Q=,tag:r/syy+JHi71zgKuQCr1NZg==,type:str]
     NB_AUTH_SECRET: ENC[AES256_GCM,data:IIScx7xQ0V1Ns/MELFxQhvDjGb5Mk7lUEwylmfdpI9M0mzmzrIVmsFraIQ==,iv:R22Lbtmx//2dfKX3YZgSUG8MCfyBpdKiDfgAqOlYJgs=,tag:JXSzNZ93iQBdabINhV9m9g==,type:str]
@@ -18,8 +18,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2025-01-07T09:38:33Z"
-    mac: ENC[AES256_GCM,data:JADhmlffcCndpPBErJhImnD3lMwU75O7y2e1es2HJIvMgdaTl4xvbIk2PwR2Wt5lvQdXu5XykASSvMY/ZqbO2npB6lsqBpcxvGmcuxHrzy/LC4gLv//ODyX9U3Qp53Br4LGltcg1lmnIz7T/Pt7i5TqpGOmpaip5bqXtXbQr2sc=,iv:xJXxp+uY8mD9fYKALLPkZi7USfhOTJmpGPQY5xYLKd0=,tag:8d+UnVWaVHgC1t7axScMbA==,type:str]
+    lastmodified: "2025-01-07T10:07:16Z"
+    mac: ENC[AES256_GCM,data:Q8/qypKiu+eDtyRjjskTt7YyPOkjjuIzLuIvujb1NHFuO2NEV6GbWFj5CPaEIViXN5m1NXM8KTFDwnjXfM3LyoqKePM/vqwBv3JQh60hQS4rlqhHH9pFPZ7OFyCgpt85vz+y0mDzDPuff0ESpkkzHnKkSn37xj/yykGCLShvFbs=,iv:0eTE5v2v5Wh9stWByNGYNoYYtJzFAzZ5OYkj1upkiXU=,tag:hisx/t/Vt7aUet0thv2aLw==,type:str]
     pgp:
         - created_at: "2025-01-06T21:18:50Z"
           enc: |-
