@@ -168,7 +168,7 @@ spec:
           nginx.ingress.kubernetes.io/server-snippet: |
             grpc_connect_timeout 86400s;
             grpc_read_timeout 86400s;
-            grpc_send_timeout 86400;
+            grpc_send_timeout 86400s;
             grpc_socket_keepalive on;
         hosts:
         - host: vpn.dagobah.txit.me
