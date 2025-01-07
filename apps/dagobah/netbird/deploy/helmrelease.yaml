@@ -109,6 +109,12 @@ spec:
         ports:
           http:
             port: 80
+      management-grpc:
+        controller: management
+        type: ClusterIP
+        ports:
+          grpc:
+            port: 80
       signal:
         controller: signal
         type: ClusterIP
@@ -165,7 +171,7 @@ spec:
           - path: /management.ManagementService
             pathType: ImplementationSpecific
             service:
-              identifier: management
+              identifier: management-grpc
               port: 80
           - path: /signalexchange.SignalExchange
             pathType: ImplementationSpecific
