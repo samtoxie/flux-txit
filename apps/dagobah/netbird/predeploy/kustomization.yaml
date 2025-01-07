@@ -7,3 +7,4 @@ resources:
 - pvc.yaml
 - database.yaml
 - scheduledbackup.yaml
+- routing-peer-secret.yaml
