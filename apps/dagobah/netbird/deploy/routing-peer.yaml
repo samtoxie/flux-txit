@@ -15,26 +15,26 @@ spec:
         app: netbird
     spec:
       containers:
-        - name: netbird
-          image: "mirror.gcr.io/netbirdio/netbird"
-          tag: 0.35.2
-          env:
-            - name: NB_SETUP_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: routing-peer-secret
-                  key: setup-key
-            - name: NB_HOSTNAME
-              value: "netbird-k8s-router" # name that will appear in the management UI
-            - name: NB_LOG_LEVEL
-              value: "info"
-            - name: NB_MANAGEMENT_URL
-              value: "https://vpn.dagobah.txit.me"
-            - name: NB_ADMIN_URL
-              value: "https://vpn.dagobah.txit.me"
-          securityContext:
-            capabilities:
-              add:
-                - NET_ADMIN
-                - SYS_RESOURCE
-                - SYS_ADMIN
+      - name: netbird
+        image: "mirror.gcr.io/netbirdio/netbird"
+        tag: 0.35.2
+        env:
+        - name: NB_SETUP_KEY
+          valueFrom:
+            secretKeyRef:
+              name: routing-peer-secret
+              key: setup-key
+        - name: NB_HOSTNAME
+          value: "netbird-k8s-router" # name that will appear in the management UI
+        - name: NB_LOG_LEVEL
+          value: "info"
+        - name: NB_MANAGEMENT_URL
+          value: "https://vpn.txit.me"
+        - name: NB_ADMIN_URL
+          value: "https://vpn.txit.me"
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - SYS_RESOURCE
+            - SYS_ADMIN
