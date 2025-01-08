@@ -38,7 +38,7 @@ spec:
           management:
             image:
               repository: mirror.gcr.io/netbirdio/management
-              tag: 0.35.2
+              tag: 0.33.0
             envFrom:
             - secretRef:
                 name: netbird-env
@@ -55,7 +55,7 @@ spec:
           signal:
             image:
               repository: mirror.gcr.io/netbirdio/signal
-              tag: 0.35.2
+              tag: 0.33.0
               pullPolicy: Always
             envFrom:
             - secretRef:
@@ -65,7 +65,7 @@ spec:
           relay:
             image:
               repository: mirror.gcr.io/netbirdio/relay
-              tag: 0.35.2
+              tag: 0.33.0
               pullPolicy: Always
             env:
               NB_LOG_LEVEL: info
@@ -79,7 +79,7 @@ spec:
           dashboard:
             image:
               repository: mirror.gcr.io/netbirdio/dashboard
-              tag: v2.8.2
+              tag: v2.7.1
               pullPolicy: Always
             env:
               NETBIRD_MGMT_API_ENDPOINT: "https://vpn.dagobah.txit.me"
