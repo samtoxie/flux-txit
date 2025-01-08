@@ -80,8 +80,24 @@ spec:
       web:
         redirectTo:
           port: websecure
+        forwardedHeaders:
+          trustedIPs:
+          - 0.0.0.0/0
+          insecure: true
+        proxyProtocol:
+          trustedIPs:
+          - 0.0.0.0/0
+          insecure: true
       websecure:
         exposedPort: 443
+        forwardedHeaders:
+          trustedIPs:
+          - 0.0.0.0/0
+          insecure: true
+        proxyProtocol:
+          trustedIPs:
+          - 0.0.0.0/0
+          insecure: true
         tls:
           enabled: true
           options: "default"
