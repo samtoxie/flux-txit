@@ -126,12 +126,14 @@ spec:
           insecure: true
         transport:
           respondingTimeouts:
-            readTimeout: 3600
-            writeTimeout: 3600
-            idleTimeout: 3600
+            readTimeout: 43200
+            writeTimeout: 43200
+            idleTimeout: 43200
           lifeCycle:
-            requestAcceptGraceTimeout: 3600
-            graceTimeOut: 3600
+            requestAcceptGraceTimeout: 43200
+            graceTimeOut: 43200
+          keepAliveMaxRequests: 100000
+          keepAliveMaxTime: 43200
         tls:
           enabled: true
           options: "default"
