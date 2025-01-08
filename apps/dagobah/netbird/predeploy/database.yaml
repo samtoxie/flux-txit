@@ -19,17 +19,17 @@ spec:
   superuserSecret:
     name: pg-superuser
   bootstrap:
-    initdb:
-      database: netbird
-      owner: netbird
-      secret:
-        name: pg-netbird
-    # recovery:
-    #   source: pg-netbird-new
+    # initdb:
     #   database: netbird
     #   owner: netbird
     #   secret:
     #     name: pg-netbird
+    recovery:
+      source: pg-netbird-new
+      database: netbird
+      owner: netbird
+      secret:
+        name: pg-netbird
   resources:
     requests:
       cpu: 100m
