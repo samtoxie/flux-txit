@@ -71,7 +71,10 @@ spec:
     - --entrypoints.websecure.forwardedHeaders.insecure
     - --entryPoints.websecure.proxyProtocol.trustedIPs=0.0.0.0/0
     - --entryPoints.websecure.forwardedHeaders.trustedIPs=0.0.0.0/0
-    # - --entrypoints.netbird.reusePort=true
+    - --entrypoints.netbird.reusePort=true
+    - --entrypoints.netbird.forwardedHeaders.insecure
+    - --entryPoints.netbird.proxyProtocol.trustedIPs=0.0.0.0/0
+    - --entryPoints.netbird.forwardedHeaders.trustedIPs=0.0.0.0/0
     service:
       annotations:
         loadbalancer.openstack.org/proxy-protocol: "true"
@@ -107,31 +110,31 @@ spec:
         tls:
           enabled: true
           options: "default"
-      # netbird:
-      #   port: 7443
-      #   expose:
-      #     default: true
-      #   exposedPort: 443
-      #   protocol: TCP
-      #   forwardedHeaders:
-      #     trustedIPs:
-      #     - 0.0.0.0/0
-      #     insecure: true
-      #   proxyProtocol:
-      #     trustedIPs:
-      #     - 0.0.0.0/0
-      #     insecure: true
-      #   transport:
-      #     respondingTimeouts:
-      #       readTimeout: 3600
-      #       writeTimeout: 3600
-      #       idleTimeout: 3600
-      #     lifeCycle:
-      #       requestAcceptGraceTimeout: 3600
-      #       graceTimeOut: 3600
-      #   tls:
-      #     enabled: true
-      #     options: "default"
+      netbird:
+        port: 7443
+        expose:
+          default: true
+        exposedPort: 443
+        protocol: TCP
+        forwardedHeaders:
+          trustedIPs:
+          - 0.0.0.0/0
+          insecure: true
+        proxyProtocol:
+          trustedIPs:
+          - 0.0.0.0/0
+          insecure: true
+        transport:
+          respondingTimeouts:
+            readTimeout: 3600
+            writeTimeout: 3600
+            idleTimeout: 3600
+          lifeCycle:
+            requestAcceptGraceTimeout: 3600
+            graceTimeOut: 3600
+        tls:
+          enabled: true
+          options: "default"
     logs:
       general:
         level: INFO
