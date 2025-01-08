@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources:
-- pg-netbird.yaml
-- netbird-env.yaml
-- configmap.yaml
-- pvc.yaml
-- database.yaml
-- scheduledbackup.yaml
-- routing-peer-secret.yaml
+resources: []
+# - pg-netbird.yaml
+# - netbird-env.yaml
+# - configmap.yaml
+# - pvc.yaml
+# - database.yaml
+# - scheduledbackup.yaml
+# - routing-peer-secret.yaml
