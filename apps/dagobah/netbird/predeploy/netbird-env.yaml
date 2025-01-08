@@ -4,8 +4,8 @@ metadata:
     name: netbird-env
     namespace: netbird
 stringData:
-    STUN_SERVER: ENC[AES256_GCM,data:veWgnBRQTRkKl8z0xbSHQe458UDeCN3l,iv:uUH3wftQQ+LULSs8wLN5igZqsSNr5g+1zcPyHZO/Nro=,tag:1+aHVLx96oZYRDCIVlnaQA==,type:str]
-    TURN_SERVER: ENC[AES256_GCM,data:iqnOQ/T2aX3Yv1B/dVGkSHawPw0/zE7C,iv:pjwUKn+bd5io3XVZGEefFanVW5kllQuoE0O9knGa7DA=,tag:CkTUKvmetT39+fXgQmNpzg==,type:str]
+    STUN_SERVER: ENC[AES256_GCM,data:AWsBU6js3ow+vI1xFQBzsig/m3G4TacA/A==,iv:FkRTEgl3iMo1pzNALHR2q8rsY8sc2d3VAjPSyelLsLs=,tag:DsnCec+IT/1lgZvILrEYxA==,type:str]
+    TURN_SERVER: ENC[AES256_GCM,data:Lj0uFXpWeNWVrPVGjEFvGD+nwnmuypelUA==,iv:cs5PdNq9QxS1vLgTXg21wCA1izxz+aoP3NyncNsEdrc=,tag:WvpZXssSAHUQIYaypolZtQ==,type:str]
     TURN_SERVER_USER: ENC[AES256_GCM,data:8PE9jw==,iv:wrbvyDbI0CEWm4LGRH8iGAlKx/hQ+Wkffbpm3L4GbmE=,tag:qTL29L18iNthq2EySMgVsQ==,type:str]
     TURN_SERVER_PASSWORD: ENC[AES256_GCM,data:CTTLozm2McYo3Vk4L6glhSJnJA5UoQXLjkDYVdjXRbT88sJ3SeKjKrVc2A==,iv:GZswyAoufPuKw/hKSramW40I64wzqWx+bCJSF6+ar64=,tag:3bKfXDgj9qbt04FBtyL5vQ==,type:str]
     NB_AUTH_SECRET: ENC[AES256_GCM,data:IIScx7xQ0V1Ns/MELFxQhvDjGb5Mk7lUEwylmfdpI9M0mzmzrIVmsFraIQ==,iv:R22Lbtmx//2dfKX3YZgSUG8MCfyBpdKiDfgAqOlYJgs=,tag:JXSzNZ93iQBdabINhV9m9g==,type:str]
@@ -18,8 +18,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2025-01-07T10:37:22Z"
-    mac: ENC[AES256_GCM,data:Zvb04HT0Kk2TBsbU0NpNwvK9aIdKNtHPls31EwlY9GLlO9O/xDbj/5cnEDxxWPDRXHysqWf09V8e7izxxkFTcGUQa7PD1ZlPgAM+PCYgxMESYH+gBIvDBgTk8knuGu9ZIAcMDrRNPJlf2moV9K/661H5hx4sMeameMeUtt7QsJE=,iv:qsaGjQZbXUU6GY6n4aEvkK6K+2MvIVY8ilPU/QLpb7I=,tag:Gj9FsTe0d1ODy4RH9RaXZw==,type:str]
+    lastmodified: "2025-01-08T13:00:08Z"
+    mac: ENC[AES256_GCM,data:OvdzXRThSdkFOffFD5L+DxWeU5F2hFrmOOuXxMEAXViU+4JJqy7iZOhQN3zgo8IFu/NNNu+MfLNwh9EPRScFUVHQegB3JUtGadI5WgDDmZrIqcJZhsjEWINzSCN78YbMY0fyW3c1M3DRJuELAwhr25tthdZba4YhhPWNq78fc0Q=,iv:cNNNiWFz4r1a2gd5RG/5qWJXIDL1We6pj+VKld8GehQ=,tag:zRwDN54YczejHQwip50dNg==,type:str]
     pgp:
         - created_at: "2025-01-06T21:18:50Z"
           enc: |-
