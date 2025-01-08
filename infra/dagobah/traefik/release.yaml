@@ -98,13 +98,6 @@ spec:
       netbird:
         port: 7443
         exposedPort: 443
-        protocol: TCP
-        forwardedHeaders:
-          trustedIPs: [ 127.0.0.1/32, 100.96.0.0/11, 10.250.0.0/16, 100.64.0.0/13 ]
-          insecure: true
-        proxyProtocol:
-          trustedIPs: [ 0.0.0.0/0 ]
-          insecure: true
         transport:
           respondingTimeouts:
             readTimeout: 3600
