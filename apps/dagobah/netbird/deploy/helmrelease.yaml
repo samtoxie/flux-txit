@@ -55,7 +55,7 @@ spec:
           signal:
             image:
               repository: mirror.gcr.io/netbirdio/signal
-              tag: 0.33.0
+              tag: 0.35.2
               pullPolicy: Always
             envFrom:
             - secretRef:
