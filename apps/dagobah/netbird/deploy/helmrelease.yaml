@@ -128,7 +128,7 @@ spec:
           http:
             port: 80
     ingress:
-      dashboard:
+      http:
         enabled: true
         className: nginx
         annotations:
@@ -147,47 +147,11 @@ spec:
             service:
               identifier: dashboard
               port: 80
-        tls:
-        - hosts:
-          - vpn.dagobah.txit.me
-          secretName: nb-tls
-      mgr:
-        enabled: true
-        className: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "86400"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "86400"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "86400"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            client_body_timeout 86400s;
-        hosts:
-        - host: vpn.dagobah.txit.me
-          paths:
           - path: /api
             pathType: ImplementationSpecific
             service:
               identifier: management
               port: 80
-        tls:
-        - hosts:
-          - vpn.dagobah.txit.me
-          secretName: nb-tls
-      relay:
-        enabled: true
-        className: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "86400"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "86400"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "86400"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            client_body_timeout 86400s;
-        hosts:
-        - host: vpn.dagobah.txit.me
-          paths:
           - path: /relay
             pathType: ImplementationSpecific
             service:
@@ -197,7 +161,7 @@ spec:
         - hosts:
           - vpn.dagobah.txit.me
           secretName: nb-tls
-      mgr-grpc:
+      grpc:
         enabled: true
         className: nginx
         annotations:
@@ -224,32 +188,6 @@ spec:
             service:
               identifier: management-grpc
               port: 33073
-        tls:
-        - hosts:
-          - vpn.dagobah.txit.me
-          secretName: nb-tls
-      signal:
-        enabled: true
-        className: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-prod-http"
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "86400"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "86400"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "86400"
-          nginx.ingress.kubernetes.io/server-snippet: |
-            grpc_connect_timeout 86400s;
-            grpc_read_timeout 86400s;
-            grpc_send_timeout 86400s;
-            grpc_socket_keepalive on;
-            client_body_timeout 86400s;
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            grpc_socket_keepalive on;
-            client_body_timeout 86400s;
-        hosts:
-        - host: vpn.dagobah.txit.me
-          paths:
           - path: /signalexchange.SignalExchange
             pathType: ImplementationSpecific
             service:
