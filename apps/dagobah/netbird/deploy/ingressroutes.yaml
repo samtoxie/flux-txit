@@ -49,15 +49,15 @@ spec:
       passHostHeader: true
       port: 80
       scheme: http
-  # - kind: Rule
-  #   match: Host(`vpn.txit.me`) && PathPrefix(`/relay`)
-  #   services:
-  #   - name: netbird-relay
-  #     namespace: netbird
-  #     passHostHeader: true
-  #     port: 80
-  #   middlewares:
-  #   - name: ssl-header
+  - kind: Rule
+    match: Host(`vpn.txit.me`) && PathPrefix(`/relay`)
+    services:
+    - name: netbird-relay
+      namespace: netbird
+      passHostHeader: true
+      port: 80
+    middlewares:
+    - name: ssl-header
   - kind: Rule
     match: Host(`vpn.txit.me`) && PathPrefix(`/management.ManagementService/`)
     services:
