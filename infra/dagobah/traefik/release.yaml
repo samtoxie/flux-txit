@@ -16,9 +16,6 @@ spec:
       interval: 60m
   releaseName: traefik
   targetNamespace: traefik
-  dependsOn:
-  - name: cert-manager
-    namespace: flux-system
   install:
     createNamespace: true
     crds: CreateReplace
