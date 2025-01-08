@@ -29,7 +29,7 @@ data:
           },
           "Relay": {
               "Addresses": [
-                  "rels://fra.relay.txit.me:443"
+                  "rels://vpn.txit.me:443"
               ],
               "CredentialsTTL": "24h0m0s",
               "Secret": "{{ .NB_AUTH_SECRET }}"
