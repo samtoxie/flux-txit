@@ -65,7 +65,7 @@ spec:
           relay:
             image:
               repository: mirror.gcr.io/netbirdio/relay
-              tag: 0.33.0
+              tag: 0.35.2
               pullPolicy: Always
             env:
               NB_LOG_LEVEL: info
