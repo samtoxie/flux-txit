@@ -2,9 +2,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: traefik
-  namespace: traefik
+  namespace: flux-system
 spec:
-  interval: 60m
+  interval: 120m
   chart:
     spec:
       chart: traefik
@@ -16,6 +16,9 @@ spec:
       interval: 60m
   releaseName: traefik
   targetNamespace: traefik
+  dependsOn:
+  - name: cert-manager
+    namespace: flux-system
   install:
     createNamespace: true
     crds: CreateReplace
@@ -29,78 +32,85 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    rbac:
+      enabled: true
+    ingressClass:
+      enabled: true
+      isDefaultClass: false
+    ingressRoute:
+      dashboard:
+        enabled: false
     providers:
-      kubernetesIngress:
-        enabled: true
       kubernetesCRD:
         enabled: true
-      kubernetesGateway:
+        allowExternalNameServices: true
+        allowCrossNamespace: true
+      kubernetesIngress:
         enabled: true
-        experimentalChannel: true
-    gateway:
-      namespacePolicy: All
-      # listeners:
-      #   postgresql:
-      #     port: 5432
-      #     hostname: "*.cargobay-ams-1.txit.me"
-      #     protocol: TLS
-      #     namespacePolicy: All
-      #     mode: Passthrough
-    ports:
-      # postgresql:
-      #   port: 5432
-      #   expose:
-      #     default: true
-      #   exposedPort: 5432
-      #   protocol: TCP
-      #   forwardedHeaders:
-      #     trustedIPs:
-      #       - 0.0.0.0/0
-      #     insecure: true
-      #   proxyProtocol:
-      #     trustedIPs:
-      #       - 0.0.0.0/0
-      #     insecure: true
-      web:
-        forwardedHeaders:
-          trustedIPs:
-            - 0.0.0.0/0
-          insecure: true
-        proxyProtocol:
-          trustedIPs:
-            - 0.0.0.0/0
-          insecure: true
-      websecure:
-        forwardedHeaders:
-          trustedIPs:
-            - 0.0.0.0/0
-          insecure: true
-        proxyProtocol:
-          trustedIPs:
-            - 0.0.0.0/0
-          insecure: true
+        allowExternalNameServices: true
+        allowCrossNamespace: true
+        ingressClass: traefik
+      kubernetesGateway:
+        enabled: false
+    # gateway:
+    #    listeners:
+    #       websecure:
+    #         port: 8443
+    #         protocol: HTTPS
+    #         namespacePolicy: All
+    #         certificateRefs: 
+    #           - name: wildcard-grombeer-pro-tls
+    #             namespace: traefik
+    globalArguments:
+    - "--api.insecure=true"
+    - "--serversTransport.insecureSkipVerify=true"
+    - "--providers.kubernetesingress.ingressclass=traefik"
+    additionalArguments:
+    - --providers.kubernetesIngress.ingressEndpoint.publishedService=traefik/traefik
+    - --entrypoints.websecure.forwardedHeaders.insecure
+    - --entrypoints.web.forwardedHeaders.insecure
+    - --entryPoints.web.forwardedHeaders.trustedIPs=0.0.0.0/0
+    - --entryPoints.websecure.forwardedHeaders.trustedIPs=0.0.0.0/0
+    - --entryPoints.web.proxyProtocol.trustedIPs=127.0.0.1/32,100.96.0.0/11,10.250.0.0/16,100.64.0.0/13
+    - --entryPoints.websecure.proxyProtocol.trustedIPs=127.0.0.1/32,100.96.0.0/11,10.250.0.0/16,100.64.0.0/13
     service:
       annotations:
         loadbalancer.openstack.org/proxy-protocol: "true"
         loadbalancer.openstack.org/keep-floatingip: "true"
-        # loadbalancer.openstack.org/hostname: "dummy.cargobay-ams-1.txit.me"
       spec:
         externalTrafficPolicy: Local
-        # loadBalancerIP: 81.24.6.152
-    metrics:
-      prometheus:
-        serviceMonitor:
-          enabled: false
+        loadBalancerIP: 81.24.6.164
+    deployment:
+      kind: Deployment
+      replicas: 3
+    ports:
+      web:
+        redirectTo:
+          port: websecure
+      websecure:
+        exposedPort: 443
+        tls:
+          enabled: true
+          options: "default"
     logs:
+      general:
+        level: INFO
       access:
         enabled: true
-#    additionalArguments:
-#      - --entrypoints.web.forwardedHeaders.insecure
-#      - --entryPoints.web.proxyProtocol.trustedIPs=0.0.0.0/0
-#      - --entryPoints.web.forwardedHeaders.trustedIPs=0.0.0.0/0
-#      - --entrypoints.websecure.forwardedHeaders.insecure
-#      - --entryPoints.websecure.proxyProtocol.trustedIPs=0.0.0.0/0
-#      - --entryPoints.websecure.forwardedHeaders.trustedIPs=0.0.0.0/0
-#      - --entrypoints.postgresql.forwardedHeaders.insecure
-#      - --entryPoints.postgresql.proxyProtocol.trustedIPs=0.0.0.0/0
-#      - --entryPoints.postgresql.forwardedHeaders.trustedIPs=0.0.0.0/0
+    persistence:
+      enabled: false
+    podSecurityContext: null
+    tls:
+      options:
+        default:
+          cipherSuites:
+          - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+          - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+          - TLS_AES_256_GCM_SHA384
+          - TLS_CHACHA20_POLY1305_SHA256
+          curvePreferences:
+          - CurveP521
+          - CurveP384
+          minVersion: VersionTLS12
+          maxVersion: VersionTLS13
+          sniStrict: true

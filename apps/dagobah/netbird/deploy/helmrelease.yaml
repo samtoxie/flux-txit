@@ -47,7 +47,7 @@ spec:
             - --log-file=console
             - --log-level=info
             - --disable-anonymous-metrics=true
-            - --single-account-mode-domain=vpn.dagobah.txit.me
+            - --single-account-mode-domain=vpn.txit.me
             - --dns-domain=vpn.txit
             - --idp-sign-key-refresh-enabled
       signal:
@@ -70,7 +70,7 @@ spec:
             env:
               NB_LOG_LEVEL: info
               NB_LISTEN_ADDRESS: ":80"
-              NB_EXPOSED_ADDRESS: "rels://vpn.dagobah.txit.me:443"
+              NB_EXPOSED_ADDRESS: "rels://vpn.txit.me:443"
             envFrom:
             - secretRef:
                 name: netbird-env
@@ -82,8 +82,8 @@ spec:
               tag: v2.8.2
               pullPolicy: Always
             env:
-              NETBIRD_MGMT_API_ENDPOINT: "https://vpn.dagobah.txit.me"
-              NETBIRD_MGMT_GRPC_API_ENDPOINT: "https://vpn.dagobah.txit.me"
+              NETBIRD_MGMT_API_ENDPOINT: "https://vpn.txit.me"
+              NETBIRD_MGMT_GRPC_API_ENDPOINT: "https://vpn.txit.me"
               AUTH_AUDIENCE: "301489946458390891"
               AUTH_CLIENT_ID: "301489946458390891"
               AUTH_AUTHORITY: "https://login.dagobah.txit.me"
@@ -140,7 +140,7 @@ spec:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             client_body_timeout 86400s;
         hosts:
-        - host: vpn.dagobah.txit.me
+        - host: vpn.txit.me
           paths:
           - path: /
             pathType: ImplementationSpecific
@@ -159,7 +159,7 @@ spec:
               port: 80
         tls:
         - hosts:
-          - vpn.dagobah.txit.me
+          - vpn.txit.me
           secretName: nb-tls
       grpc:
         enabled: true
@@ -181,7 +181,7 @@ spec:
             grpc_socket_keepalive on;
             client_body_timeout 86400s;
         hosts:
-        - host: vpn.dagobah.txit.me
+        - host: vpn.txit.me
           paths:
           - path: /management.ManagementService
             pathType: ImplementationSpecific
@@ -195,7 +195,7 @@ spec:
               port: 10000
         tls:
         - hosts:
-          - vpn.dagobah.txit.me
+          - vpn.txit.me
           secretName: nb-tls
     persistence:
       netbird-mgmt:
