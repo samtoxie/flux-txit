@@ -170,6 +170,10 @@ spec:
             grpc_read_timeout 86400s;
             grpc_send_timeout 86400s;
             grpc_socket_keepalive on;
+            client_body_timeout 86400s;
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            grpc_socket_keepalive on;
+            client_body_timeout 86400s;
         hosts:
         - host: vpn.dagobah.txit.me
           paths:
