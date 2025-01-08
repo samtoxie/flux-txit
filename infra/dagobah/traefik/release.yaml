@@ -72,6 +72,7 @@ spec:
     - --entrypoints.websecure.forwardedHeaders.insecure
     - --entryPoints.websecure.forwardedHeaders.trustedIPs=0.0.0.0/0
     - --entryPoints.websecure.proxyProtocol.trustedIPs=127.0.0.1/32,100.96.0.0/11,10.250.0.0/16,100.64.0.0/13
+    - --entrypoints.netbird.reusePort=true
     service:
       annotations:
         loadbalancer.openstack.org/proxy-protocol: "true"
@@ -88,6 +89,27 @@ spec:
           port: websecure
       websecure:
         exposedPort: 443
+        tls:
+          enabled: true
+          options: "default"
+      netbird:
+        port: 7443
+        exposedPort: 443
+        protocol: TCP
+        forwardedHeaders:
+          trustedIPs: [ 127.0.0.1/32, 100.96.0.0/11, 10.250.0.0/16, 100.64.0.0/13 ]
+          insecure: true
+        proxyProtocol:
+          trustedIPs: [ 0.0.0.0/0 ]
+          insecure: true
+        transport:
+          respondingTimeouts:
+            readTimeout: 3600
+            writeTimeout: 3600
+            idleTimeout: 3600
+          lifeCycle:
+            requestAcceptGraceTimeout: 3600
+            graceTimeOut: 3600
         tls:
           enabled: true
           options: "default"
