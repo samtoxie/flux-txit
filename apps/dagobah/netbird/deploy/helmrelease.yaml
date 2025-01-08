@@ -60,20 +60,20 @@ spec:
             envFrom:
             - secretRef:
                 name: netbird-env
-      relay:
-        containers:
-          relay:
-            image:
-              repository: mirror.gcr.io/netbirdio/relay
-              tag: 0.35.2
-              pullPolicy: Always
-            env:
-              NB_LOG_LEVEL: info
-              NB_LISTEN_ADDRESS: ":80"
-              NB_EXPOSED_ADDRESS: "rels://vpn.txit.me:443"
-            envFrom:
-            - secretRef:
-                name: netbird-env
+      # relay:
+      #   containers:
+      #     relay:
+      #       image:
+      #         repository: mirror.gcr.io/netbirdio/relay
+      #         tag: 0.35.2
+      #         pullPolicy: Always
+      #       env:
+      #         NB_LOG_LEVEL: info
+      #         NB_LISTEN_ADDRESS: ":80"
+      #         NB_EXPOSED_ADDRESS: "rels://vpn.txit.me:443"
+      #       envFrom:
+      #       - secretRef:
+      #           name: netbird-env
       dashboard:
         containers:
           dashboard:
@@ -121,12 +121,12 @@ spec:
         ports:
           grpc:
             port: 10000
-      relay:
-        controller: relay
-        type: ClusterIP
-        ports:
-          http:
-            port: 80
+      # relay:
+      #   controller: relay
+      #   type: ClusterIP
+      #   ports:
+      #     http:
+      #       port: 80
     ingress:
       http:
         enabled: true
@@ -152,11 +152,11 @@ spec:
             service:
               identifier: management
               port: 80
-          - path: /relay
-            pathType: ImplementationSpecific
-            service:
-              identifier: relay
-              port: 80
+          # - path: /relay
+          #   pathType: ImplementationSpecific
+          #   service:
+          #     identifier: relay
+          #     port: 80
         tls:
         - hosts:
           - vpn.txit.me

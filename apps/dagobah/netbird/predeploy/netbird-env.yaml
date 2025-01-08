@@ -8,6 +8,8 @@ stringData:
     TURN_SERVER: ENC[AES256_GCM,data:Lj0uFXpWeNWVrPVGjEFvGD+nwnmuypelUA==,iv:cs5PdNq9QxS1vLgTXg21wCA1izxz+aoP3NyncNsEdrc=,tag:WvpZXssSAHUQIYaypolZtQ==,type:str]
     TURN_SERVER_USER: ENC[AES256_GCM,data:8PE9jw==,iv:wrbvyDbI0CEWm4LGRH8iGAlKx/hQ+Wkffbpm3L4GbmE=,tag:qTL29L18iNthq2EySMgVsQ==,type:str]
     TURN_SERVER_PASSWORD: ENC[AES256_GCM,data:CTTLozm2McYo3Vk4L6glhSJnJA5UoQXLjkDYVdjXRbT88sJ3SeKjKrVc2A==,iv:GZswyAoufPuKw/hKSramW40I64wzqWx+bCJSF6+ar64=,tag:3bKfXDgj9qbt04FBtyL5vQ==,type:str]
+    TURN_SERVER_PASSWORD_AMS: ENC[AES256_GCM,data:xZ+vRnye7wecoPLn1FLRJ53oeMg0T5LWFIpAs5TlLjMPlOE7tjiZL0/UOA==,iv:gMZg5bOdDxKqgssrWIVhjGg0BBIex4gFRejRdO+BhmI=,tag:4aRIH35MYt0/wBPnKlGGNA==,type:str]
+    TURN_SERVER_PASSWORD_FRA: ENC[AES256_GCM,data:lBqwMUsBvTp9RQfBn+vFzKauOqJAzN0E5hKpIItrqH7E9VEKy4+JQPebCQ==,iv:H/5fI596WYwvIBzElwzz1Hq4sAPrDo8AtPHQNK78+ZQ=,tag:ll5ycQ8SMxQ/uX0vj9Xu8A==,type:str]
     NB_AUTH_SECRET: ENC[AES256_GCM,data:IIScx7xQ0V1Ns/MELFxQhvDjGb5Mk7lUEwylmfdpI9M0mzmzrIVmsFraIQ==,iv:R22Lbtmx//2dfKX3YZgSUG8MCfyBpdKiDfgAqOlYJgs=,tag:JXSzNZ93iQBdabINhV9m9g==,type:str]
     NETBIRD_STORE_ENGINE_POSTGRES_DSN: ENC[AES256_GCM,data:MEm/72WMQqKkr36JQm5p83BYLIISmkPlXpY+Kg3zwyI0OnulxAzjCFCzIa3rxvFxfIWcDA6U4M41dj+DoeZUBcTSO9/ymPyzXn4iWx1i8llg+p9zUpWIW+aMZWm7igP3lou9cV3tyRZ0Bv52LdkFLWezqNy3jSjDfAJmVhA=,iv:ajZRLLSn1A3YZMS+pcpfnUL6rZ4/Mnwy3ueqdVnVfNU=,tag:rTgi4SPa0lRIgkWmN3Vjdw==,type:str]
     DATASTORE_ENCRYPTION_KEY: ENC[AES256_GCM,data:DHjqbBlKRFIAnPswvaJBnuJbfKH+wnYPbhB0dZk6XKUzyuxAY4cmMhS+5mE=,iv:eyeEB35Dg6KAjpUlKuSzeZRi6Gd/2BuAM1AjipfXzzU=,tag:xBEcw6BEqf19528/Rr1duA==,type:str]
@@ -18,8 +20,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2025-01-08T13:00:08Z"
-    mac: ENC[AES256_GCM,data:OvdzXRThSdkFOffFD5L+DxWeU5F2hFrmOOuXxMEAXViU+4JJqy7iZOhQN3zgo8IFu/NNNu+MfLNwh9EPRScFUVHQegB3JUtGadI5WgDDmZrIqcJZhsjEWINzSCN78YbMY0fyW3c1M3DRJuELAwhr25tthdZba4YhhPWNq78fc0Q=,iv:cNNNiWFz4r1a2gd5RG/5qWJXIDL1We6pj+VKld8GehQ=,tag:zRwDN54YczejHQwip50dNg==,type:str]
+    lastmodified: "2025-01-08T18:36:35Z"
+    mac: ENC[AES256_GCM,data:cV/+tdyeB6UjdEorVaVA6WqNhfCi0e0DZC7fgTTFZCEOj1UBh9yyboKZJ5/rHoQ0DjnA2tzwhkD3DsXlKORqS5mtqOdzi29wyFVEx6xc2MYvQsIWCdQ7R7Z2tkNK1w5OdQ2XZD8bJwd4TgELSLvRHOWHI2O9o+AAb/5rwxvboik=,iv:JFPkBGw7EdojG+hW7Xtj//OH6KJ18qmR8eEvCGG57NU=,tag:5Un0YJjVLKdh7FLVdIOkAA==,type:str]
     pgp:
         - created_at: "2025-01-06T21:18:50Z"
           enc: |-

@@ -9,7 +9,13 @@ data:
           "Stuns": [
               {
                   "Proto": "udp",
-                  "URI": "{{ .STUN_SERVER }}",
+                  "URI": "stun:ams.relay.txit.me:3478",
+                  "Username": "",
+                  "Password": ""
+              },
+              {
+                  "Proto": "udp",
+                  "URI": "stun:fra.relay.txit.me:3478",
                   "Username": "",
                   "Password": ""
               }
@@ -21,15 +27,22 @@ data:
               "Turns": [
                   {
                       "Proto": "udp",
-                      "URI": "{{ .TURN_SERVER }}",
-                      "Username": "{{ .TURN_SERVER_USER }}",
-                      "Password": "{{ .TURN_SERVER_PASSWORD }}"
+                      "URI": "turn:ams.relay.txit.me:3478",
+                      "Username": "self",
+                      "Password": "{{ .TURN_SERVER_PASSWORD_AMS }}"
+                  },
+                  {
+                      "Proto": "udp",
+                      "URI": "turn:fra.relay.txit.me:3478",
+                      "Username": "self",
+                      "Password": "{{ .TURN_SERVER_PASSWORD_FRA }}"
                   }
               ]
           },
           "Relay": {
               "Addresses": [
-                  "rels://vpn.txit.me:443"
+                  "rels://ams.relay.txit.me:443",
+                  "rels://fra.relay.txit.me:443"
               ],
               "CredentialsTTL": "24h0m0s",
               "Secret": "{{ .NB_AUTH_SECRET }}"
