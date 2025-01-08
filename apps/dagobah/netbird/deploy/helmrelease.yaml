@@ -186,11 +186,13 @@ spec:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             client_body_timeout 86400s;
         hosts:
-        - path: /relay
-          pathType: ImplementationSpecific
-          service:
-            identifier: relay
-            port: 80
+        - host: vpn.dagobah.txit.me
+          paths:
+          - path: /relay
+            pathType: ImplementationSpecific
+            service:
+              identifier: relay
+              port: 80
         tls:
         - hosts:
           - vpn.dagobah.txit.me
