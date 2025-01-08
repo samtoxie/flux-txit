@@ -11,7 +11,7 @@ stringData:
     TURN_SERVER_PASSWORD_AMS: ENC[AES256_GCM,data:xZ+vRnye7wecoPLn1FLRJ53oeMg0T5LWFIpAs5TlLjMPlOE7tjiZL0/UOA==,iv:gMZg5bOdDxKqgssrWIVhjGg0BBIex4gFRejRdO+BhmI=,tag:4aRIH35MYt0/wBPnKlGGNA==,type:str]
     TURN_SERVER_PASSWORD_FRA: ENC[AES256_GCM,data:lBqwMUsBvTp9RQfBn+vFzKauOqJAzN0E5hKpIItrqH7E9VEKy4+JQPebCQ==,iv:H/5fI596WYwvIBzElwzz1Hq4sAPrDo8AtPHQNK78+ZQ=,tag:ll5ycQ8SMxQ/uX0vj9Xu8A==,type:str]
     NB_AUTH_SECRET: ENC[AES256_GCM,data:IIScx7xQ0V1Ns/MELFxQhvDjGb5Mk7lUEwylmfdpI9M0mzmzrIVmsFraIQ==,iv:R22Lbtmx//2dfKX3YZgSUG8MCfyBpdKiDfgAqOlYJgs=,tag:JXSzNZ93iQBdabINhV9m9g==,type:str]
-    NETBIRD_STORE_ENGINE_POSTGRES_DSN: ENC[AES256_GCM,data:MEm/72WMQqKkr36JQm5p83BYLIISmkPlXpY+Kg3zwyI0OnulxAzjCFCzIa3rxvFxfIWcDA6U4M41dj+DoeZUBcTSO9/ymPyzXn4iWx1i8llg+p9zUpWIW+aMZWm7igP3lou9cV3tyRZ0Bv52LdkFLWezqNy3jSjDfAJmVhA=,iv:ajZRLLSn1A3YZMS+pcpfnUL6rZ4/Mnwy3ueqdVnVfNU=,tag:rTgi4SPa0lRIgkWmN3Vjdw==,type:str]
+    NETBIRD_STORE_ENGINE_POSTGRES_DSN: ENC[AES256_GCM,data:vJMVY9kuBqhirYZgjaHll04f9xZkQIR6kwHBDmjX1sL+ACbIUFz/FD3mRzyNWrrclQnaYIgGlNPiVjnn9SlhWTkNuFx+eaHWNDUD478wKVkggTzsJNR9H9Cbc5QVJFNCQkUxhKUEGxxQsGUjy6MLRfrraptB2IudoszASiO1SeUm,iv:YXgtghuzjtuXWXInPbPe1kM65R4BnLpzZ1MfVSM86mc=,tag:iaHNff5wl8MnR1b7be9p2Q==,type:str]
     DATASTORE_ENCRYPTION_KEY: ENC[AES256_GCM,data:DHjqbBlKRFIAnPswvaJBnuJbfKH+wnYPbhB0dZk6XKUzyuxAY4cmMhS+5mE=,iv:eyeEB35Dg6KAjpUlKuSzeZRi6Gd/2BuAM1AjipfXzzU=,tag:xBEcw6BEqf19528/Rr1duA==,type:str]
     IDP_SERVICE_USER_SECRET: ENC[AES256_GCM,data:A4F6AUmhF4v3gg0GE0ziS5SWMy5yXvF4EwlowGC9kGBev2SoG+yHf65yGHZczGGbdGat+aba029kHoLL33w4GQ==,iv:tw4sYMB/U4ix9qALDGfIAV8YmFDBDiHNokghaohSPxU=,tag:Oagv5ycMMyKK6B7vb6fwmw==,type:str]
 sops:
@@ -20,8 +20,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2025-01-08T18:36:35Z"
-    mac: ENC[AES256_GCM,data:cV/+tdyeB6UjdEorVaVA6WqNhfCi0e0DZC7fgTTFZCEOj1UBh9yyboKZJ5/rHoQ0DjnA2tzwhkD3DsXlKORqS5mtqOdzi29wyFVEx6xc2MYvQsIWCdQ7R7Z2tkNK1w5OdQ2XZD8bJwd4TgELSLvRHOWHI2O9o+AAb/5rwxvboik=,iv:JFPkBGw7EdojG+hW7Xtj//OH6KJ18qmR8eEvCGG57NU=,tag:5Un0YJjVLKdh7FLVdIOkAA==,type:str]
+    lastmodified: "2025-01-08T20:21:19Z"
+    mac: ENC[AES256_GCM,data:QmRLQCv674BbHyMccj1chT8dGaY+e5X5LTvKK2obyNkCMoMNW9FpCu5IXj/uwYsDb7ejRW4p/tQj3j7gHm8ixSh13cYZPhxWM6btZQljSR5TsiX4jpMb0aguMIfyAMTOKrM3OfSrYFMIxnoTvwl79TR43oLkxBsYc//K8stnqaw=,iv:m1fwyBu7PImRYJ7rrapgjgu8RCgBKFk9AjLSYJQJH3U=,tag:U6NiLzGkALpVZfgPU8qqZw==,type:str]
     pgp:
         - created_at: "2025-01-06T21:18:50Z"
           enc: |-

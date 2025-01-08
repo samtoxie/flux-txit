@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: pg-netbird
+  name: pg-netbird-new
   namespace: netbird
   annotations:
     cnpg.io/skipEmptyWalArchiveCheck: enabled
@@ -19,17 +19,17 @@ spec:
   superuserSecret:
     name: pg-superuser
   bootstrap:
-    # initdb:
-    #   database: netbird
-    #   owner: netbird
-    #   secret:
-    #     name: pg-netbird
-    recovery:
-      source: pg-netbird
+    initdb:
       database: netbird
       owner: netbird
       secret:
         name: pg-netbird
+    # recovery:
+    #   source: pg-netbird-new
+    #   database: netbird
+    #   owner: netbird
+    #   secret:
+    #     name: pg-netbird
   resources:
     requests:
       cpu: 100m
@@ -56,7 +56,7 @@ spec:
           name: s3-fra
           key: secret-access-key
   externalClusters:
-  - name: pg-netbird
+  - name: pg-netbird-new
     barmanObjectStore:
       destinationPath: s3://dagobah-backups/cnpg
       endpointURL: https://fra.fuga.cloud:8080
