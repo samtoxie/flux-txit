@@ -75,6 +75,15 @@ spec:
     - --entrypoints.netbird.forwardedHeaders.insecure
     - --entryPoints.netbird.proxyProtocol.trustedIPs=0.0.0.0/0
     - --entryPoints.netbird.forwardedHeaders.trustedIPs=0.0.0.0/0
+    - --entryPoints.netbird.transport.respondingTimeouts.readTimeout=43200
+    - --entryPoints.netbird.transport.respondingTimeouts.writeTimeout=43200
+    - --entryPoints.netbird.transport.respondingTimeouts.idleTimeout=43200
+    - --entryPoints.netbird.transport.lifeCycle.requestAcceptGraceTimeout=43200
+    - --entryPoints.netbird.transport.lifeCycle.graceTimeOut=43200
+    - --entryPoints.netbird.transport.lifeCycle.graceTimeOut=43200
+    - --entryPoints.netbird.transport.keepAliveMaxRequests=43200
+    - --entryPoints.netbird.transport.keepAliveMaxTime=43200
+    - --entryPoints.netbird.http2.maxConcurrentStreams=43200
     service:
       annotations:
         loadbalancer.openstack.org/proxy-protocol: "true"
