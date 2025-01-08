@@ -6,6 +6,8 @@ metadata:
 spec:
   entryPoints:
     - web
+    - websecure
+    - netbird
   routes:
     - match: Host(`traefik.dagobah2.txit.me`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       kind: Rule
