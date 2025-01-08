@@ -31,7 +31,7 @@ metadata:
   namespace: netbird
 spec:
   entryPoints:
-  - netbird
+  - websecure
   routes:
   - kind: Rule
     match: Host(`vpn.txit.me`) && !PathPrefix(`/api`) && !PathPrefix(`/management`) && !PathPrefix(`/signalexchange`) && !PathPrefix(`/relay`)
