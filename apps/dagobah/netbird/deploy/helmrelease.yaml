@@ -224,6 +224,10 @@ spec:
             service:
               identifier: management-grpc
               port: 33073
+        tls:
+        - hosts:
+          - vpn.dagobah.txit.me
+          secretName: nb-tls
       signal:
         enabled: true
         className: nginx
