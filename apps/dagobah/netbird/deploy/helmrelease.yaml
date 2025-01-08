@@ -47,8 +47,8 @@ spec:
             - --log-file=console
             - --log-level=info
             - --disable-anonymous-metrics=true
-            - --single-account-mode-domain=vpn.txit.me
-            - --dns-domain=vpn.txit
+            - --single-account-mode-domain=nb.txit.int
+            - --dns-domain=nb.txit.int
             - --idp-sign-key-refresh-enabled
       signal:
         containers:
@@ -112,12 +112,16 @@ spec:
       management-grpc:
         controller: management
         type: ClusterIP
+        annotations:
+          traefik.ingress.kubernetes.io/service.serversscheme: h2c
         ports:
           grpc:
             port: 33073
       signal:
         controller: signal
         type: ClusterIP
+        annotations:
+          traefik.ingress.kubernetes.io/service.serversscheme: h2c
         ports:
           grpc:
             port: 10000
