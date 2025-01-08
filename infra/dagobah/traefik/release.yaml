@@ -81,7 +81,7 @@ spec:
         loadBalancerIP: 81.24.6.164
     deployment:
       kind: Deployment
-      replicas: 3
+      replicas: 1
     ports:
       web:
         redirectTo:
