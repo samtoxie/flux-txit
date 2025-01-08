@@ -65,6 +65,12 @@ spec:
     additionalArguments:
     - --entrypoints.web.reusePort=true
     - --entrypoints.websecure.reusePort=true
+    - --entrypoints.web.forwardedHeaders.insecure
+    - --entryPoints.web.proxyProtocol.trustedIPs=0.0.0.0/0
+    - --entryPoints.web.forwardedHeaders.trustedIPs=0.0.0.0/0
+    - --entrypoints.websecure.forwardedHeaders.insecure
+    - --entryPoints.websecure.proxyProtocol.trustedIPs=0.0.0.0/0
+    - --entryPoints.websecure.forwardedHeaders.trustedIPs=0.0.0.0/0
     # - --entrypoints.netbird.reusePort=true
     service:
       annotations:
