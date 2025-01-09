@@ -29,9 +29,9 @@ spec:
         - name: NB_LOG_LEVEL
           value: "info"
         - name: NB_MANAGEMENT_URL
-          value: "https://vpn.txit.me"
+          value: "https://netbird.txit.me"
         - name: NB_ADMIN_URL
-          value: "https://vpn.txit.me"
+          value: "https://netbird.txit.me"
         securityContext:
           capabilities:
             add:
