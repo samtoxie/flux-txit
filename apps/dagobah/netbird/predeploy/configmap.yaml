@@ -28,9 +28,7 @@ data:
               ]
           },
           "Relay": {
-              "Addresses": [
-                  "rels://netbird.txit.me:443"
-              ],
+              "Addresses": [],
               "CredentialsTTL": "24h0m0s",
               "Secret": "{{ .NB_AUTH_SECRET }}"
           },
