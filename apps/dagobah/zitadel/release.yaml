@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: zitadel
         namespace: flux-system
-      version: 8.11.2
+      version: 8.11.3
       interval: 2h
   dependsOn:
   - name: cert-manager
