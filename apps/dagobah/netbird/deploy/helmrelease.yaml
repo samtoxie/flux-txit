@@ -38,7 +38,7 @@ spec:
           management:
             image:
               repository: mirror.gcr.io/netbirdio/management
-              tag: 0.36.5
+              tag: 0.36.7
             envFrom:
             - secretRef:
                 name: netbird-env
