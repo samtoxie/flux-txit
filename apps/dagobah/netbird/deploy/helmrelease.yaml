@@ -80,7 +80,7 @@ spec:
           dashboard:
             image:
               repository: mirror.gcr.io/netbirdio/dashboard
-              tag: v2.9.0
+              tag: v2.10.0
               pullPolicy: Always
             env:
               NETBIRD_MGMT_API_ENDPOINT: "https://vpn.dagobah.txit.me"
