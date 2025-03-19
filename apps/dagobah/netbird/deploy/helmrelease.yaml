@@ -54,7 +54,7 @@ spec:
           signal:
             image:
               repository: mirror.gcr.io/netbirdio/signal
-              tag: 0.36.7
+              tag: 0.38.2
               pullPolicy: Always
             env:
               NB_LOG_LEVEL: debug
